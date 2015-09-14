@@ -1,1 +1,3 @@
 Heip, tämä on ohjelmistojen suunnittelun harjoitustyön versiohallinta. 
+
+Moi :3
