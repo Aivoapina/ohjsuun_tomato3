@@ -2,6 +2,7 @@
 #define FIGHTINGSCENE_H
 
 #include <QWidget>
+#include <QtQuickWidgets/QQuickWidget>
 
 namespace Ui {
 class FightingScene;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::FightingScene *ui;
+    QQuickWidget *qmlView;
 };
 
 #endif // FIGHTINGSCENE_H
