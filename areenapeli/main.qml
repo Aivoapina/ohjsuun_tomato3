@@ -1,7 +1,6 @@
 import QtQuick 2.3
-import QtQuick.Window 2.2
 
-Window {
+Rectangle {
     visible: true
     height: 600; width: 420
     Arena{}

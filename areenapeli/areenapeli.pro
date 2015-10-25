@@ -5,7 +5,9 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     mainwindow.cpp \
-    fightingscene.cpp
+    fightingscene.cpp \
+    areenateam.cpp \
+    areenamember.cpp
 
 RESOURCES += qml.qrc
 
@@ -17,7 +19,9 @@ include(deployment.pri)
 
 HEADERS += \
     mainwindow.h \
-    fightingscene.h
+    fightingscene.h \
+    areenateam.h \
+    areenamember.h
 
 FORMS += \
     mainwindow.ui \
