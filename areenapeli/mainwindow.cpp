@@ -19,7 +19,7 @@ void MainWindow::on_exitGame_clicked()
 
 void MainWindow::on_startGame_clicked()
 {
-    FightingScene *window = new FightingScene(0);
+    FightingScene *window = new FightingScene();
     window->show();
     close();
 }

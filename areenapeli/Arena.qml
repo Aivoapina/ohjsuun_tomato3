@@ -5,11 +5,12 @@ Rectangle {
     width: 420
     height: 660
 
-    Grid {
+    GridView {
         id: gridModel
         x: 10; y: 10;
         width: 450; height: 550;
-        rows: 16; columns: 10; spacing: 0;
+        list: list
+
 
         Repeater{
             model: 160;
