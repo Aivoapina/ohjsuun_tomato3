@@ -6,12 +6,12 @@
 class Tile : QModelIndex
 {
 public:
-    Tile(QString color, bool solid = false);
+    Tile(QString pictureDir, bool solid = false);
     void onHit();
 
 private:
     bool solid;
-    QString color;
+    QPixmap picture;
 };
 
 #endif // TILE_H

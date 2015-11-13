@@ -1,8 +1,8 @@
 #include "tile.h"
 
-Tile::Tile(QString picture, bool isSolid = false)
+Tile::Tile(QString pictureDir, bool isSolid = false)
 {
     solid = isSolid;
-    color = picture;
+    picture = QPixmap(pictureDir);
 }
 

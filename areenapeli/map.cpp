@@ -1,18 +1,27 @@
 #include "map.h"
 #include "tile.h"
 
-Map::Map()
+Map::Map(QObject *parent) : QAbstractItemModel(parent)
 {
 
 }
 
-void Map::makeMap()
+int Map::rowCount(const QModelIndex &parent) const
 {
-    for ( int i = 1; i < 16; i++){
-        map_.insertRow(i, Tile("#FF0000"));
-    }
-    for ( int j = 1; j < 10; j++){
+    return 16;
+}
 
+int Map::columnCount(const QModelIndex &parent) const
+{
+    return 10;
+}
+
+QVariant Map::data(const QModelIndex &index, int role) const
+{
+    if (role != Qt::DisplayRole){
+        return QVariant();
     }
 }
+
+
 
