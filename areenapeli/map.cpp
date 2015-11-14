@@ -1,45 +1,41 @@
 #include "map.h"
 #include "tile.h"
+#include <QModelIndex>
 
 
-Map::Map(QObject *parent) : QAbstractItemModel(parent)
+Map::Map(QObject *parent) : QAbstractListModel(parent)
 {
 
 }
 
-void Map::addTile(Tile)
+void Map::setMapModel(QList<Tile> new_map)
 {
-
+    map = new_map;
 }
-
+/*
 QHash<int, QByteArray> Map::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[BackgroundRole] = "background";
     roles[IconRole] = "icon";
     return roles;
-}
+}*/
 
 
 
-int Map::rowCount(const QModelIndex &parent) const
+int Map::rowCount(const QModelIndex & parent ) const
 {
-    return 16;
-}
-
-int Map::columnCount(const QModelIndex &parent) const
-{
-    return 10;
+    return map.count();
 }
 
 QVariant Map::data(const QModelIndex &index, int role) const
 {
-    if (role != Qt::DisplayRole){
+    if (role != Qt::DisplayRole && role != Qt::DecorationRole){
         return QVariant();
     } else if (role == Qt::DisplayRole){
-        return
+        Tile asd = map.at( index.row() );
+        return asd.givePicture();
     }
+    return QVariant();
 }
-
-
 

@@ -2,16 +2,18 @@
 #define TILE_H
 #include <QString>
 #include <QModelIndex>
+#include <QPixmap>
 
 class Tile : QModelIndex
 {
 public:
-    Tile(QString pictureDir, bool solid = false);
+    Tile(QString &name, QString pictureDir, bool solid = false);
+    QString givePicture();
     void onHit();
 
 private:
     bool solid;
-    QPixmap picture;
+    QString picture;
 };
 
 #endif // TILE_H

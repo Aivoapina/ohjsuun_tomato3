@@ -1,21 +1,24 @@
 #ifndef MAP_H
 #define MAP_H
-#include <QAbstractItemModel>
+#include <QAbstractListModel>
 #include "tile.h"
 
-class Map : QAbstractItemModel
+class Map : public QAbstractListModel
 {
     Q_OBJECT
+
 public:
-    enum MapRoles{
-        Image = Qt::DecorationRole
+    /*enum MapRoles{
+        BackgroundRole = Qt::DecorationRole,
+        IconRole = Qt::DisplayRole
     };
-
+    */
     Map(QObject *parent = 0);
-
+    void setMapModel( QList<Tile>);
+    //QHash<int, QByteArray> roleNames() const;
     int rowCount(const QModelIndex &parent) const;
-    int columnCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
+
 private:
     QList<Tile> map;
 
