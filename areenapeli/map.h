@@ -8,7 +8,6 @@ class Map : QAbstractItemModel
     Q_OBJECT
 public:
     enum MapRoles{
-        TypeRole = Qt::UserRole,
         Image = Qt::DecorationRole
     };
 
