@@ -12,15 +12,15 @@ FightingScene::FightingScene(QWidget *parent) :
 {
     ui->setupUi(this);
     QList<Tile> map;
-    QString name = "yee";
-    QString location = "black";
+    QString hero = "assets/bullmentula_ingame.png";
+    QString location = "assets/grass_texture.jpg";
 
     for(int i = 0; i < 160; i++){
-        if ( !(i % 5) ){
-            map.append( Tile( name, "white" ) );
+        if ( i == 5 ){
+            map.append( Tile( hero, location ) );
             continue;
         }
-        map.append( Tile( name, location ) );
+        map.append( Tile( "", location ) );
     }
     Map mapmodel;
     mapmodel.setMapModel(map);

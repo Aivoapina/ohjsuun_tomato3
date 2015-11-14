@@ -32,9 +32,15 @@ QVariant Map::data(const QModelIndex &index, int role) const
 {
     if (role != Qt::DisplayRole && role != Qt::DecorationRole){
         return QVariant();
-    } else if (role == Qt::DisplayRole){
+    } else if (role == Qt::DecorationRole){
         Tile asd = map.at( index.row() );
         return asd.givePicture();
+    } else if ( role == Qt::DisplayRole ){
+        Tile hero = map.at( index.row() );
+        if (hero.getHeroPic() == ""){
+            return QVariant();
+        }
+        return hero.getHeroPic();
     }
     return QVariant();
 }

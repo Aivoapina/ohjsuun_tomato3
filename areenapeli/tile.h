@@ -7,13 +7,16 @@
 class Tile : QModelIndex
 {
 public:
-    Tile(QString &name, QString pictureDir, bool solid = false);
+    Tile(QString heroDir, QString pictureDir, bool solid = false);
     QString givePicture();
+    QString getHeroPic();
     void onHit();
+
 
 private:
     bool solid;
     QString picture;
+    QString hero;
 };
 
 #endif // TILE_H

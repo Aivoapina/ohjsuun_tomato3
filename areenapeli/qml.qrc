@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Arena.qml</file>
+        <file>assets/grass_texture.jpg</file>
+        <file>assets/bullmentula_ingame.png</file>
     </qresource>
 </RCC>
