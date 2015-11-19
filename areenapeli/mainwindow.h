@@ -2,12 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "map.h"
+//#include "map.h"
 #include "kiltahuone.h"
 #include "kiltamodel.h"
 #include "arenateam.h"
 #include "plebruutu.h"
 #include "lintulawindow.h"
+#include "shopwindow.h"
 
 namespace Ui{
 class MainWindow;
@@ -42,6 +43,7 @@ private slots:
     void pleb2_selected();
     void pleb3_selected();
     void pleb4_selected();
+
 
 private:
     Ui::MainWindow *ui;

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "fightingscene.h"
 #include <qqmlcontext.h>
 #include <QSignalMapper>
 #include <QFrame>
@@ -32,7 +31,7 @@ void MainWindow::on_exitGame_clicked()
     close();
 }
 
-void MainWindow::on_startGame_clicked()
+/*void MainWindow::on_startGame_clicked()
 {
     Map mapModel;
     mapModel.makeTile();
@@ -44,10 +43,9 @@ void MainWindow::on_startGame_clicked()
     view->show();
 }
 
-
+*/
 void MainWindow::on_kilta_clicked()
 {
-    qDebug() << "asd";
     for(auto i: ui->keskiWidget->children()){
         delete i;
     }
@@ -177,3 +175,8 @@ void MainWindow::pleb4_selected()
 }
 
 
+
+void MainWindow::on_startGame_clicked()
+{
+
+}
