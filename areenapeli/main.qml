@@ -1,24 +1,74 @@
-import QtQuick 2.3
+import QtQuick 2.5
 
 Rectangle {
+    id: item
     visible: true
     height: 660; width: 420
-    Component{
-        id: square
-        Item {
-            width: grid.cellWidth; height: grid.cellHeight
-            Image{ height: 40; width: 40; source: decoration }
-            Image{ anchors.fill: parent ;height: 40; width: 40; source: display }
-        }
-    }
+    signal qmlSignal(string msg, int index)
     GridView {
         id: grid
         x: 10; y: 10;
-        width: 400; height:640;
+        width: 400; height: 640;
         cellWidth: 40; cellHeight: 40
+        Component{
+            id: square
+            Rectangle {
+                id: wrapper
+                width: grid.cellWidth; height: grid.cellHeight
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: grid.currentIndex = index
+                }
+                focus: true
+                Keys.onRightPressed: {
+                    console.log("move right")
+                }
+                states: [
+                    State {
+                        name: "none"
+                        when: (grid.currentIndex == -1)
+                    },
+                    State {
+                        name: "selected"
+                        when: wrapper.GridView.isCurrentItem
+                        PropertyChanges {
+                            target: picborder
+                            border.color: "black"
+                        }
+                    }
+                ]
+                Image{ height: 40; width: 40; source: decoration }
+                Image{ anchors.fill: parent; height: 40; width: 40; source: display }
+                Rectangle{
+                    id: picborder
+                    anchors.fill: parent
+                    height: 40; width: 40;
+                    color: "transparent"
+                    border.color: "transparent"
+                }
+            }
+        }
         model: myModel
         delegate: square
-        highlight: Rectangle { color: "red"; radius: 5 }
-        focus: true
+        Component.onCompleted: grid.currentIndex = -1
     }
+
+    Keys.onRightPressed: {
+        myModel.liikuJohonkin("right", grid.currentIndex)
+        grid.moveCurrentIndexRight()
+    }
+    Keys.onLeftPressed: {
+        myModel.liikuJohonkin("left", grid.currentIndex)
+        grid.moveCurrentIndexLeft()
+    }
+    Keys.onUpPressed: {
+        myModel.liikuJohonkin("up", grid.currentIndex)
+        grid.moveCurrentIndexUp()
+    }
+    Keys.onDownPressed: {
+        myModel.liikuJohonkin("down", grid.currentIndex)
+        grid.moveCurrentIndexDown()
+    }
+    focus: true
 }

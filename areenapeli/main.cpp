@@ -1,6 +1,5 @@
-#include <QGuiApplication>
+
 #include <QApplication>
-#include <QQmlApplicationEngine>
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
