@@ -7,6 +7,7 @@
 #include <QFrame>
 #include "myqframe.h"
 #include <QDebug>
+#include "shopscene.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),
   ui(new Ui::MainWindow)
@@ -173,5 +174,11 @@ void MainWindow::on_startGame_clicked()
         qDebug() << "Error";
         return;
     }
+    window->show();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    shopscene *window = new shopscene(ui->keskiWidget);
     window->show();
 }

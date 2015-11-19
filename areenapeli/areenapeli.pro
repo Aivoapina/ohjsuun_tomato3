@@ -16,7 +16,9 @@ SOURCES += main.cpp \
     kiltamodel.cpp \
     plebruutu.cpp \
     lintulawindow.cpp \
-    myqframe.cpp
+    myqframe.cpp \
+    shopscene.cpp \
+    shop.cpp
 
 RESOURCES += qml.qrc
 
@@ -42,7 +44,9 @@ HEADERS += \
     kiltamodel.h \
     plebruutu.h \
     lintulawindow.h \
-    myqframe.h
+    myqframe.h \
+    shopscene.h \
+    shop.h
 
 FORMS += \
     mainwindow.ui \
@@ -52,4 +56,7 @@ FORMS += \
     lintulawindow.ui \
     shopscene.ui \
     myqframe.ui
+
+OTHER_FILES += \
+    objectlist.txt
 
