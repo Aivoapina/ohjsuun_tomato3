@@ -1,16 +1,31 @@
-#ifndef MAP_H
-#define MAP_H
-#include <QAbstractItemModel>
 
-class Map : QAbstractItemModel
+#include <QAbstractTableModel>
+#include <QStringList>
+
+#include "tile.h"
+
+class Map : public QAbstractTableModel
 {
+    Q_OBJECT
 public:
-    Map();
-    void makeMap();
+    enum tileRoles {
+
+        ColorRole = Qt::UserRole
+       // solidRole
+    };
+
+    Map(QObject *parent = 0);
+
+    void makeTile();
+
+    int rowCount(const QModelIndex & parent = QModelIndex()) const;
+    int columnCount(const QModelIndex & parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+
+protected:
+    QHash<int, QByteArray> roleNames() const;
 
 private:
-
-    QAbstractItemModel *map_;
+    QList<QList<Tile>> map_;
 };
 
-#endif // MAP_H

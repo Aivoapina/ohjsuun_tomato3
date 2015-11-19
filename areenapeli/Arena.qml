@@ -1,17 +1,15 @@
 import QtQuick 2.3
 
-Rectangle {
-    id: arena;
-    width: 420
-    height: 660
 
     GridView {
-        id: gridModel
+        id: gridView
         x: 10; y: 10;
         width: 450; height: 550;
-        list: list
+        model: myModel
+        delegate: Rectangle {color: color}
+    }
 
-
+/*
         Repeater{
             model: 160;
             Rectangle {
@@ -28,5 +26,6 @@ Rectangle {
                 //}
             }
         }
-    }
-}
+    }*/
+
+

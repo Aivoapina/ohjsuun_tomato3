@@ -1,8 +1,19 @@
 #include "tile.h"
 
-Tile::Tile(QString picture, bool isSolid = false)
+Tile::Tile(const QString &picture)
+    : color_(picture)//, bool &isSolid)
 {
-    solid = isSolid;
-    color = picture;
+  //  solid_ = isSolid;
+   // color_ = picture;
 }
+
+QString Tile::color() const
+{
+    return color_;
+}
+/*
+bool Tile::solid() const
+{
+    return solid_;
+}*/
 

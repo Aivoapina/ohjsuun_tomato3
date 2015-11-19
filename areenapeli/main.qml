@@ -1,7 +1,13 @@
 import QtQuick 2.3
+GridView {
 
-Rectangle {
-    visible: true
-    height: 600; width: 420
-    Arena{}
+    width: 500; height: 500;
+    model: myModel
+    delegate: Rectangle {
+        width: 50; height: 50;
+        color: color_
+
+    }
+
 }
+

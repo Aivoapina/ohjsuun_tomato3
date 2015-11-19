@@ -3,15 +3,17 @@
 #include <QString>
 #include <QModelIndex>
 
-class Tile : QModelIndex
+class Tile
 {
 public:
-    Tile(QString color, bool solid = false);
-    void onHit();
+    Tile(const QString &color);//, bool &solid);
+    QString color() const;
+   // bool solid() const;
+  //  void onHit();
 
 private:
-    bool solid;
-    QString color;
+  //  bool solid_;
+    QString color_;
 };
 
 #endif // TILE_H

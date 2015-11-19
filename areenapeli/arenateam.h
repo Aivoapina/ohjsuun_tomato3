@@ -3,18 +3,21 @@
 
 #include <QString>
 #include <memory>
-#include <vector>
+#include <QList>
 #include "arenamember.h"
 
 
 class ArenaTeam
 {
 public:
-    ArenaTeam(std::shared_ptr<ArenaMember> pleb );
-    void buyNewMember(ArenaMember &newpleb);
+    ArenaTeam();
+    QList<std::shared_ptr<ArenaMember>> getPlebs();
+    void buyNewMember(std::shared_ptr<ArenaMember> newpleb);
+    int get_raha();
+    void lisaa_rahaa(int maara);
 
 private:
-    std::vector<std::shared_ptr<ArenaMember>> members;
+    QList<std::shared_ptr<ArenaMember>> members;
     uint gold;
     QString name;
 
