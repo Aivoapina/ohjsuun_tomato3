@@ -6,6 +6,7 @@
 #include <QSignalMapper>
 #include <QFrame>
 #include "myqframe.h"
+#include "shopscene.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),
   ui(new Ui::MainWindow)
@@ -168,5 +169,11 @@ void MainWindow::pleb4_selected()
 void MainWindow::on_startGame_clicked()
 {
     FightingScene *window = new FightingScene(ui->keskiWidget);
+    window->show();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    shopscene *window = new shopscene(ui->keskiWidget);
     window->show();
 }

@@ -44,6 +44,8 @@ private slots:
     void pleb4_selected();
 
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     ArenaTeam *myteam_;
