@@ -167,7 +167,6 @@ void MainWindow::pleb4_selected()
 
 void MainWindow::on_startGame_clicked()
 {
-    FightingScene *window = new FightingScene();
+    FightingScene *window = new FightingScene(ui->keskiWidget);
     window->show();
-    close();
 }
