@@ -6,6 +6,7 @@ class Controller : QAbstractItemModel
 {
 public:
     Controller();
+    void createMap();
 };
 
 #endif // CONTROLLER_H

@@ -5,6 +5,7 @@ import QtQuick 2.3
         id: gridView
         x: 10; y: 10;
         width: 450; height: 550;
+<<<<<<< HEAD
         model: myModel
         delegate: Rectangle {color: color}
     }
@@ -27,5 +28,13 @@ import QtQuick 2.3
             }
         }
     }*/
+=======
+        cellWidth: 70; cellHeight: 70
+        model: myModel
+        delegate: Rectangle { color: decoration }
+
+    }
+}
+>>>>>>> 90f5f233c323c6cd88be95d062815dabd2289611
 
 
