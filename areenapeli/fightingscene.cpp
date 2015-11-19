@@ -1,5 +1,6 @@
 #include "fightingscene.h"
 #include "ui_fightingscene.h"
+#include "arenateam.h"
 #include <QString>
 #include <QQmlContext>
 #include <QDebug>
@@ -11,31 +12,45 @@ FightingScene::FightingScene(QWidget *parent) :
     ui(new Ui::FightingScene)
 {
     ui->setupUi(this);
-    QList<Tile> map;
-    QString hero = "assets/bullmentula_ingame.png";
-    QString location = "assets/grass_texture.jpg";
-
-    for(int i = 0; i < 160; i++){
-        if ( i == 5 ){
-            map.append( Tile( hero, location ) );
-            continue;
-        }
-        map.append( Tile( "", location ) );
-    }
-    mapmodel = new Map();
-    mapmodel->setMapModel(map);
-
-    QQmlContext *asd = ui->qmlView->rootContext();
-    asd->setContextProperty("myModel", mapmodel);
-    ui->qmlView->setSource(QUrl("qrc:/main.qml"));
-    //QQuickItem *item = ui->qmlView->rootObject();
-    //connect(ui->qmlView, SIGNAL(qmlSignal(QString, int)), mapmodel, SLOT(moveTo(QString, int)) );
 
 }
 
 FightingScene::~FightingScene()
 {
     delete ui;
+}
+
+bool FightingScene::initFight(ArenaTeam *ownTeam, ArenaTeam *enemyTeam)
+{
+    QList<Tile> map;
+    QString location = "assets/grass_texture.jpg";
+    int j = 0;
+    for(int i = 0; i < 160; i++){
+        if ( i > 2 and i < 7 ){
+            if ( j < enemyTeam->getPlebs().size() ){
+                map.append( Tile( enemyTeam->getPlebs().at(j), location, true ) );
+                j++;
+                continue;
+            } else if( i == 6 ){
+                j = 0;
+            }
+        }
+        if ( i > 152 and i < 157 ){
+            if ( j < ownTeam->getPlebs().size() ){
+                map.append( Tile( ownTeam->getPlebs().at(j), location, true ) );
+                j++;
+                continue;
+            }
+        }
+        map.append( Tile( nullptr, location ) );
+    }
+    mapmodel = new Map();
+    mapmodel->setMapModel(map);
+
+    ui->qmlView->rootContext()->setContextProperty("myModel", mapmodel);
+    ui->qmlView->setSource(QUrl("qrc:/main.qml"));
+
+    return true;
 }
 
 void FightingScene::moveTo(QString direction, int index)

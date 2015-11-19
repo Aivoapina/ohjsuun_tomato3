@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QtQuickWidgets/QQuickWidget>
 #include "map.h"
+#include "arenateam.h"
 
 namespace Ui {
 class FightingScene;
@@ -16,15 +17,16 @@ class FightingScene : public QWidget
 public:
     explicit FightingScene(QWidget *parent = 0);
     ~FightingScene();
+    bool initFight(ArenaTeam *ownTeam, ArenaTeam *enemyTeam);
 
 public slots:
     void moveTo(QString direction, int index);
 
 
 private:
+
     Map* mapmodel;
     Ui::FightingScene *ui;
-    //QQuickView qmlView;
 };
 
 #endif // FIGHTINGSCENE_H

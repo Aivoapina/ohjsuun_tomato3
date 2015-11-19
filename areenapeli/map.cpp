@@ -18,25 +18,25 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
 {
     layoutAboutToBeChanged();
     if (direction == "right"){
-        if (index % 10 == 9){
+        if (index % 10 == 9 or map.at(index+1).isSolid() ){
             qDebug() << "Can't move there";
             return;
         }
         map.swap(index, index+1);
-    } else if(direction == "left"){
-        if (index % 10 == 0){
+    } else if(direction == "left" ){
+        if (index % 10 == 0 or map.at(index-1).isSolid()){
             qDebug() << "Can't move there";
             return;
         }
         map.swap(index, index-1);
-    } else if(direction == "up"){
-        if (index < 11){
+    } else if(direction == "up" ){
+        if (index < 11 or map.at(index-10).isSolid()){
             qDebug() << "Can't move there";
             return;
         }
         map.swap(index, index-10);
-    } else if(direction == "down"){
-        if (index > 150){
+    } else if(direction == "down" ){
+        if (index > 150 or map.at(index+10).isSolid()){
             qDebug() << "Can't move there";
             return;
         }

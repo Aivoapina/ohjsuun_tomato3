@@ -6,6 +6,7 @@
 #include <QSignalMapper>
 #include <QFrame>
 #include "myqframe.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),
   ui(new Ui::MainWindow)
@@ -168,5 +169,9 @@ void MainWindow::pleb4_selected()
 void MainWindow::on_startGame_clicked()
 {
     FightingScene *window = new FightingScene(ui->keskiWidget);
+    if ( !window->initFight(myteam_, myteam_)){
+        qDebug() << "Error";
+        return;
+    }
     window->show();
 }

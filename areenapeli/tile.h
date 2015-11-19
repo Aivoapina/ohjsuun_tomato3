@@ -3,19 +3,21 @@
 #include <QString>
 #include <QModelIndex>
 #include <QPixmap>
+#include "arenamember.h"
+#include <memory>
 
 class Tile
 {
 public:
-    Tile(QString heroDir, QString pictureDir, bool solid = false);
+    Tile(std::shared_ptr<ArenaMember> pleb, QString pictureDir, bool solidBlock = false);
     QString givePicture();
     QString getHeroPic();
-    void onHit();
+    bool isSolid() const;
 
 private:
     bool solid;
     QString picture;
-    QString hero;
+    std::shared_ptr<ArenaMember> hero;
 };
 
 #endif // TILE_H

@@ -16,7 +16,7 @@ ArenaMember::ArenaMember()
     nimi_ = MAHD_NIMET[randInt(0,MAHD_NIMET.size()-1)];
     stats_.hp = randInt(10,50);
     stats_.power = randInt(3,15);
-    iconPath_ = "icon.jpg";
+    iconPath_ = "assets/bullmentula_ingame.png";
 }
 
 ArenaMember::ArenaMember(QStringList data)

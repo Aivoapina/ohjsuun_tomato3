@@ -1,14 +1,13 @@
-import QtQuick 2.5
+import QtQuick 2.3
 
 Rectangle {
     id: item
     visible: true
     height: 660; width: 420
-    signal qmlSignal(string msg, int index)
     GridView {
         id: grid
-        x: 10; y: 10;
-        width: 400; height: 640;
+        x: 10; y: 10
+        width: 400; height: 640
         cellWidth: 40; cellHeight: 40
         Component{
             id: square
@@ -19,10 +18,6 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: grid.currentIndex = index
-                }
-                focus: true
-                Keys.onRightPressed: {
-                    console.log("move right")
                 }
                 states: [
                     State {

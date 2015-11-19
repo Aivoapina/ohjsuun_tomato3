@@ -1,23 +1,28 @@
 #include "tile.h"
 
-Tile::Tile(QString heroDir, QString pictureDir, bool isSolid)
+
+Tile::Tile(std::shared_ptr<ArenaMember> pleb, QString pictureDir, bool solidBlock)
 {
-    solid = isSolid;
+    solid = solidBlock;
     picture = pictureDir;
-    hero = heroDir;
+    hero = pleb;
 }
 
 QString Tile::givePicture()
 {
     return picture;
 }
-QString Tile::getHeroPic(){
-    return hero;
+
+QString Tile::getHeroPic()
+{
+    if (hero == nullptr){
+        return "";
+    }
+    return hero->iconPath();
 }
 
-/*
-bool Tile::solid() const
+bool Tile::isSolid() const
 {
-    return solid_;
-}*/
+    return solid;
+}
 
