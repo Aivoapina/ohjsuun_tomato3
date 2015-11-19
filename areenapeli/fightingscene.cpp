@@ -1,8 +1,8 @@
 #include "fightingscene.h"
 #include "ui_fightingscene.h"
-#include <QQuickView>
 #include <QString>
 #include <QQmlContext>
+#include <QDebug>
 #include "tile.h"
 #include "map.h"
 
@@ -22,16 +22,23 @@ FightingScene::FightingScene(QWidget *parent) :
         }
         map.append( Tile( "", location ) );
     }
-    Map mapmodel;
-    mapmodel.setMapModel(map);
+    mapmodel = new Map();
+    mapmodel->setMapModel(map);
 
     QQmlContext *asd = ui->qmlView->rootContext();
-    asd->setContextProperty("myModel", &mapmodel);
+    asd->setContextProperty("myModel", mapmodel);
     ui->qmlView->setSource(QUrl("qrc:/main.qml"));
+    //QQuickItem *item = ui->qmlView->rootObject();
+    //connect(ui->qmlView, SIGNAL(qmlSignal(QString, int)), mapmodel, SLOT(moveTo(QString, int)) );
 
 }
 
 FightingScene::~FightingScene()
 {
     delete ui;
+}
+
+void FightingScene::moveTo(QString direction, int index)
+{
+    mapmodel->liikuJohonkin(direction, index);
 }

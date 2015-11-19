@@ -1,6 +1,7 @@
 #include "map.h"
 #include "tile.h"
 #include <QModelIndex>
+#include <QDebug>
 
 
 Map::Map(QObject *parent) : QAbstractListModel(parent)
@@ -11,6 +12,37 @@ Map::Map(QObject *parent) : QAbstractListModel(parent)
 void Map::setMapModel(QList<Tile> new_map)
 {
     map = new_map;
+}
+
+void Map::liikuJohonkin(const QString &direction, const int &index)
+{
+    layoutAboutToBeChanged();
+    if (direction == "right"){
+        if (index % 10 == 9){
+            qDebug() << "Can't move there";
+            return;
+        }
+        map.swap(index, index+1);
+    } else if(direction == "left"){
+        if (index % 10 == 0){
+            qDebug() << "Can't move there";
+            return;
+        }
+        map.swap(index, index-1);
+    } else if(direction == "up"){
+        if (index < 11){
+            qDebug() << "Can't move there";
+            return;
+        }
+        map.swap(index, index-10);
+    } else if(direction == "down"){
+        if (index > 150){
+            qDebug() << "Can't move there";
+            return;
+        }
+        map.swap(index, index+10);
+    }
+    layoutChanged();
 }
 /*
 QHash<int, QByteArray> Map::roleNames() const

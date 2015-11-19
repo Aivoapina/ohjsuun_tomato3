@@ -1,3 +1,4 @@
+TARGET = abstractitemmodel
 TEMPLATE = app
 
 QT += qml quick widgets quickwidgets
@@ -10,10 +11,19 @@ SOURCES += main.cpp \
     arenateam.cpp \
     controller.cpp \
     map.cpp \
-    tile.cpp
+    tile.cpp \
+    kiltahuone.cpp \
+    kiltamodel.cpp \
+    plebruutu.cpp \
+    lintulawindow.cpp \
+    myqframe.cpp
 
 RESOURCES += qml.qrc
 
+target.path = $$[QT_INSTALL_EXAMPLES]/quick/models/abstractitemmodel
+target.path = $$[QT_INSTALL_EXAMPLES]/corelib/tools/customcompleter
+
+INSTALLS += target
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
@@ -27,9 +37,19 @@ HEADERS += \
     arenateam.h \
     controller.h \
     map.h \
-    tile.h
+    tile.h \
+    kiltahuone.h \
+    kiltamodel.h \
+    plebruutu.h \
+    lintulawindow.h \
+    myqframe.h
 
 FORMS += \
     mainwindow.ui \
-    fightingscene.ui
+    fightingscene.ui \
+    kiltahuone.ui \
+    plebruutu.ui \
+    lintulawindow.ui \
+    shopscene.ui \
+    myqframe.ui
 

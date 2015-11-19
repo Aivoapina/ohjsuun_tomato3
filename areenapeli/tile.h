@@ -4,14 +4,13 @@
 #include <QModelIndex>
 #include <QPixmap>
 
-class Tile : QModelIndex
+class Tile
 {
 public:
     Tile(QString heroDir, QString pictureDir, bool solid = false);
     QString givePicture();
     QString getHeroPic();
     void onHit();
-
 
 private:
     bool solid;

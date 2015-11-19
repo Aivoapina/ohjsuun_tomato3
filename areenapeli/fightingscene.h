@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QtQuickWidgets/QQuickWidget>
+#include "map.h"
 
 namespace Ui {
 class FightingScene;
@@ -16,9 +17,14 @@ public:
     explicit FightingScene(QWidget *parent = 0);
     ~FightingScene();
 
+public slots:
+    void moveTo(QString direction, int index);
+
+
 private:
+    Map* mapmodel;
     Ui::FightingScene *ui;
-    QQuickWidget *qmlView;
+    //QQuickView qmlView;
 };
 
 #endif // FIGHTINGSCENE_H
