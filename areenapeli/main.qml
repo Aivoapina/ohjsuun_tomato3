@@ -71,4 +71,6 @@ Rectangle {
         grid.moveCurrentIndexDown()
     }
     focus: true
+
 }
+

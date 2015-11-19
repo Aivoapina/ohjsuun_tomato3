@@ -30,10 +30,6 @@ signals:
 
 private:
     QList<Tile> map;
-
-
-
-
 };
+#endif
 
-#endif // MAP_H

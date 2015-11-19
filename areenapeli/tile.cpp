@@ -15,3 +15,9 @@ QString Tile::getHeroPic(){
     return hero;
 }
 
+/*
+bool Tile::solid() const
+{
+    return solid_;
+}*/
+

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QtQuickWidgets/QQuickWidget>
 #include "map.h"
+
 namespace Ui {
 class FightingScene;
 }
@@ -23,7 +24,7 @@ public slots:
 private:
     Map* mapmodel;
     Ui::FightingScene *ui;
-    QQuickWidget *qmlView;
+    //QQuickView qmlView;
 };
 
 #endif // FIGHTINGSCENE_H
