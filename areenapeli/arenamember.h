@@ -24,7 +24,7 @@ public:
     void lisaa_maxhp();
     void lisaa_power();
 
-    QString iconPath() const;
+    QString r_iconPath() const;
     int r_current_hp() const;
     int r_power() const;
     QString r_nimi() const;
@@ -34,6 +34,7 @@ public:
 private:
     stats stats_;
     QString nimi_;
+    QString rotu_;
     int hinta_;
     QString iconPath_;
 

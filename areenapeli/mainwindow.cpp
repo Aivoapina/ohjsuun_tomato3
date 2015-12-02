@@ -105,26 +105,26 @@ void MainWindow::on_lintulaButton_clicked()
 
 void MainWindow::hp_ostettu()
 {
-    if( selected == nullptr ){
+    if( myteam_->return_selected() == nullptr ){
         return;
     }
     if( myteam_->get_raha() >= 250 ){
         myteam_->lisaa_rahaa(-250);
         ui->rahaLabel->setText(QString::number(myteam_->get_raha()));
-        selected->lisaa_maxhp();
+        myteam_->return_selected()->lisaa_maxhp();
     }
     refresh_plebs();
 }
 
 void MainWindow::power_ostettu()
 {
-    if( selected == nullptr ){
+    if( myteam_->return_selected() == nullptr ){
         return;
     }
     if( myteam_->get_raha() >= 1000 ){
         myteam_->lisaa_rahaa(-1000);
         ui->rahaLabel->setText(QString::number(myteam_->get_raha()));
-        selected->lisaa_power();
+        myteam_->return_selected()->lisaa_power();
     }
     refresh_plebs();
 }
@@ -132,7 +132,7 @@ void MainWindow::power_ostettu()
 void MainWindow::pleb1_selected()
 {
     ui->pleb1->setFrameShadow(QFrame::Raised);
-    selected = myteam_->getPlebs()[0];
+    myteam_->select(myteam_->getPlebs()[0]);
     ui->pleb2->setFrameShadow(QFrame::Sunken);
     ui->pleb3->setFrameShadow(QFrame::Sunken);
     ui->pleb4->setFrameShadow(QFrame::Sunken);
@@ -141,7 +141,7 @@ void MainWindow::pleb1_selected()
 void MainWindow::pleb2_selected()
 {
     ui->pleb2->setFrameShadow(QFrame::Raised);
-    selected = myteam_->getPlebs()[1];
+    myteam_->select(myteam_->getPlebs()[1]);
     ui->pleb1->setFrameShadow(QFrame::Sunken);
     ui->pleb3->setFrameShadow(QFrame::Sunken);
     ui->pleb4->setFrameShadow(QFrame::Sunken);
@@ -150,7 +150,7 @@ void MainWindow::pleb2_selected()
 void MainWindow::pleb3_selected()
 {
     ui->pleb3->setFrameShadow(QFrame::Raised);
-    selected = myteam_->getPlebs()[2];
+    myteam_->select(myteam_->getPlebs()[2]);
     ui->pleb2->setFrameShadow(QFrame::Sunken);
     ui->pleb1->setFrameShadow(QFrame::Sunken);
     ui->pleb4->setFrameShadow(QFrame::Sunken);
@@ -159,7 +159,7 @@ void MainWindow::pleb3_selected()
 void MainWindow::pleb4_selected()
 {
     ui->pleb4->setFrameShadow(QFrame::Raised);
-    selected = myteam_->getPlebs()[3];
+    myteam_->select(myteam_->getPlebs()[3]);
     ui->pleb2->setFrameShadow(QFrame::Sunken);
     ui->pleb3->setFrameShadow(QFrame::Sunken);
     ui->pleb1->setFrameShadow(QFrame::Sunken);

@@ -4,12 +4,23 @@ ArenaTeam::ArenaTeam()
 {
     name = "Tiimi";
     gold = 9000;
+    selected = nullptr;
 }
 
 void ArenaTeam::buyNewMember(std::shared_ptr<ArenaMember> newpleb)
 {
     gold = gold-newpleb.get()->r_hinta();
     members.push_back(newpleb);
+}
+
+std::shared_ptr<ArenaMember> ArenaTeam::return_selected()
+{
+    return selected;
+}
+
+void ArenaTeam::select(std::shared_ptr<ArenaMember> s)
+{
+    selected = s;
 }
 
 int ArenaTeam::get_raha()

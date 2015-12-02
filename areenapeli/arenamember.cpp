@@ -34,7 +34,7 @@ ArenaMember::ArenaMember(const ArenaMember &a)
     stats_.power = a.r_power();
     nimi_ = a.r_nimi();
     hinta_ = a.r_hinta();
-    iconPath_ = a.iconPath();
+    iconPath_ = a.r_iconPath();
 }
 
 ArenaMember::~ArenaMember()
@@ -51,7 +51,7 @@ void ArenaMember::lisaa_power()
     stats_.power++;
 }
 
-QString ArenaMember::iconPath() const
+QString ArenaMember::r_iconPath() const
 {
     return iconPath_;
 }
@@ -83,7 +83,7 @@ QStringList ArenaMember::r_data()
     data.append(QString::number(hinta_));
     data.append(QString::number(stats_.hp));
     data.append(QString::number(stats_.power));
-    data.append(iconPath());
+    data.append(r_iconPath());
     return data;
 }
 
