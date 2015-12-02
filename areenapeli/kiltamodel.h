@@ -5,7 +5,7 @@
 #include <memory>
 #include <QList>
 #include "arenamember.h"
-
+#include "plebarpoja.h"
 
 
 class kiltaModel : public QAbstractListModel
@@ -32,6 +32,7 @@ protected:
 
 private:
     QList<std::shared_ptr<ArenaMember>> model_;
+    plebArpoja arpoja_;
 };
 
 #endif // KILTAMODEL_H

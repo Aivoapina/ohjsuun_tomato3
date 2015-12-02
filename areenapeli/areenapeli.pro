@@ -18,9 +18,11 @@ SOURCES += main.cpp \
     lintulawindow.cpp \
     myqframe.cpp \
     shopscene.cpp \
-    shop.cpp
+    shop.cpp \
+    plebarpoja.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    resources.qrc
 
 target.path = $$[QT_INSTALL_EXAMPLES]/quick/models/abstractitemmodel
 target.path = $$[QT_INSTALL_EXAMPLES]/corelib/tools/customcompleter
@@ -46,7 +48,8 @@ HEADERS += \
     lintulawindow.h \
     myqframe.h \
     shopscene.h \
-    shop.h
+    shop.h \
+    plebarpoja.h
 
 FORMS += \
     mainwindow.ui \
@@ -59,4 +62,7 @@ FORMS += \
 
 OTHER_FILES += \
     objectlist.txt
+
+DISTFILES += \
+    rotu_alustus
 

@@ -10,6 +10,9 @@ struct stats{
 
     int hp;
     int power;
+    int armor;
+    int liike;
+    int nopeus;
 
 };
 
@@ -24,10 +27,18 @@ public:
     void lisaa_maxhp();
     void lisaa_power();
 
-    QString r_iconPath() const;
+    // tähän funktio jonka parametrinä saapuva dmg, palautetaan otettu dmg ja lyhyt kuvaus tapahtuneesta.
+
+    QString r_rotu() const;
+    QString r_nimi() const;
+
     int r_current_hp() const;
     int r_power() const;
-    QString r_nimi() const;
+    int r_armor() const;
+    int r_liike() const;
+    int r_nopeus() const;
+
+    QString r_iconPath() const;
     int r_hinta() const;
     QStringList r_data();
 

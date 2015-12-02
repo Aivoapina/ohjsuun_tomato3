@@ -17,7 +17,8 @@ void kiltaModel::makePleb()
     int x = randInteger(2,6);
     beginInsertRows(QModelIndex(), 0, x);
     for( int j = 0; j<x; j++){
-        std::shared_ptr<ArenaMember> pleb(new ArenaMember());
+        // tähän generoidaan uusia jäbiä tehtaalla
+        std::shared_ptr<ArenaMember> pleb(arpoja_.arvoPleb());
         model_ << pleb;
     }
     endInsertRows();

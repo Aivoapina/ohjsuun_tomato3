@@ -1,4 +1,5 @@
 #include "arenateam.h"
+#include <QDebug>
 
 ArenaTeam::ArenaTeam()
 {
@@ -9,6 +10,7 @@ ArenaTeam::ArenaTeam()
 
 void ArenaTeam::buyNewMember(std::shared_ptr<ArenaMember> newpleb)
 {
+    qDebug() << newpleb.get()->r_hinta();
     gold = gold-newpleb.get()->r_hinta();
     members.push_back(newpleb);
 }

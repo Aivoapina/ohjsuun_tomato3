@@ -18,7 +18,7 @@ QString Tile::getHeroPic()
     if (hero == nullptr){
         return "";
     }
-    return hero->iconPath();
+    return hero->r_iconPath();
 }
 
 bool Tile::isSolid() const
