@@ -56,7 +56,7 @@ QString Shopobject::r_damout() const
 QString Shopobject::toQString() const
 {
     QString changedstring{""};
-    changedstring = x.name+";"+x.price+";"+x.damain+";"+x.damout+";";
+    changedstring = x.name+";"+x.price+";"+x.damain+";"+x.damout;
     return changedstring;
 }
 

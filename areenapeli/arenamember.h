@@ -29,8 +29,8 @@ public:
     void lisaa_maxhp();
     void lisaa_power();
 
-    void osta_ase();
-    void osta_armor();
+    void osta_ase(QString d);
+    void osta_armor(QString d);
 
     //0 indeksistä löytyy otettu osuma ja 1 indeksistä kuvaus tapahtuneesta
     QStringList laske_osuma(int saapuva);

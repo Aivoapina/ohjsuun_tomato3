@@ -73,14 +73,15 @@ void ArenaMember::lisaa_power()
     stats_.power++;
 }
 
-void ArenaMember::osta_ase()
+void ArenaMember::osta_ase(QString d)
 {
-
+    qDebug() << "asdasddsasad";
+    ase_ = new Shopobject(d);
 }
 
-void ArenaMember::osta_armor()
+void ArenaMember::osta_armor(QString d)
 {
-
+    armor_ = new Shopobject(d);
 }
 
 QStringList ArenaMember::laske_osuma(int saapuva)

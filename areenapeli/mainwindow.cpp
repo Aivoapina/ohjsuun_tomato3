@@ -180,6 +180,11 @@ void MainWindow::on_startGame_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
+    for(auto i: ui->keskiWidget->children()){
+        delete i;
+    }
+
     shopscene *window = new shopscene(myteam_, ui->keskiWidget);
+    connect(window, SIGNAL(tavara_ostettu()),this, SLOT(refresh_plebs()));
     window->show();
 }

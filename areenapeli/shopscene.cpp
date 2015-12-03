@@ -12,7 +12,8 @@ shopscene::shopscene(ArenaTeam *myteam, QWidget *parent) :
 
     ui(new Ui::shopscene)
 {
-    myteam = myteam_;
+
+    myteam_ = myteam;
     ui->setupUi(this);
 
     Shopobject alien;
@@ -53,8 +54,10 @@ void shopscene::on_ButtonBuy_clicked()
     //if ui->treeWidget->
     //valittu objecti palautuu tähän.
     //objektin arvot lisätään
-    cout<<"You've pressed the buy item buttom"<<endl;
-    qDebug() << ui->treeWidget->currentItem()->data(4,2);
+    qDebug() << ui->treeWidget->currentItem()->data(4,2).toString();
+
+    myteam_->return_selected()->osta_ase(ui->treeWidget->currentItem()->data(4,2).toString());
+    emit tavara_ostettu();
     //std::shared_ptr<ArenaMember> selection_;
 
 }

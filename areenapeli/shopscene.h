@@ -25,6 +25,9 @@ public:
     explicit shopscene(ArenaTeam *myteam, QWidget *parent = 0);
     ~shopscene();
 
+signals:
+    void tavara_ostettu();
+
 private slots:
     //void on_TextRACE_textChanged();
 
@@ -34,11 +37,13 @@ private slots:
     void refresh_plebs();
     void on_ButtonBuy_clicked();
 
+
+
 private:
     Ui::shopscene *ui;
     vector<item_struct> list_shopobjects;
     ArenaTeam *myteam_;
-    std::shared_ptr<ArenaMember> selection_;
+ //   std::shared_ptr<ArenaMember> selection_;
 };
 
 #endif // shopscene    _H

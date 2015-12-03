@@ -28,7 +28,18 @@ void plebRuutu::paivita()
     ui->armorLabel->setText("Armor:" + QString::number(pleb_->r_armor()));
     ui->rotuLabel->setText("Rotu: " + pleb_->r_rotu());
     ui->nopeusLabel->setText("Nopeus: " + QString::number(pleb_->r_nopeus()));
-
+    if( pleb_->r_panssari() == nullptr ){
+        ui->panssariLabel->setText("Ei panssaria");
+    }
+    else{
+        ui->panssariLabel->setText(pleb_->r_panssari()->r_name());
+    }
+    if( pleb_->r_ase() == nullptr ){
+        ui->aseLabel->setText("Ei asetta");
+    }
+    else{
+        ui->aseLabel->setText(pleb_->r_ase()->r_name());
+    }
 }
 
 void plebRuutu::mousePressEvent(QMouseEvent *e)
