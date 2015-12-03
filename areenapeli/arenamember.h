@@ -6,6 +6,8 @@
 #include <QObject>
 #include <QMetaType>
 
+#include "shop.h"
+
 struct stats{
 
     int hp;
@@ -27,7 +29,8 @@ public:
     void lisaa_maxhp();
     void lisaa_power();
 
-    // tähän funktio jonka parametrinä saapuva dmg, palautetaan otettu dmg ja lyhyt kuvaus tapahtuneesta.
+    //0 indeksistä löytyy otettu osuma ja 1 indeksistä kuvaus tapahtuneesta
+    QStringList laske_osuma(int saapuva);
 
     QString r_rotu() const;
     QString r_nimi() const;
@@ -48,6 +51,9 @@ private:
     QString rotu_;
     int hinta_;
     QString iconPath_;
+
+    shobject armor_;
+    shobject ase_;
 
 
 };
