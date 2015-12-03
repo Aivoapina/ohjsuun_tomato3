@@ -43,46 +43,6 @@
     </property>
    </column>
   </widget>
-  <widget class="QWidget" name="gridLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>320</y>
-     <width>241</width>
-     <height>120</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>First wepon:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="labelWEPON">
-      <property name="text">
-       <string>NONE</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="label_8">
-      <property name="text">
-       <string>Defence:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="labelDEFENCE">
-      <property name="text">
-       <string>NONE</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QPushButton" name="ButtonBuy">
    <property name="geometry">
     <rect>
@@ -94,6 +54,16 @@
    </property>
    <property name="text">
     <string>BUY SELECTED</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="infoRuutu">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>340</y>
+     <width>251</width>
+     <height>111</height>
+    </rect>
    </property>
   </widget>
  </widget>
