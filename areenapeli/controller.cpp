@@ -17,9 +17,7 @@ Map* Controller::initFight()
 
 bool Controller::startFight()
 {
-    if (map_model->giveTurn( own_team_->getPlebs())){
 
-    }
 }
 
 
