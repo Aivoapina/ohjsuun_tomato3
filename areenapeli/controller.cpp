@@ -1,14 +1,25 @@
 #include "controller.h"
 #include "tile.h"
 
-Controller::Controller()
+Controller::Controller(ArenaTeam *own_team, ArenaTeam *enemy_team)
 {
-
+    own_team_ = own_team;
+    enemy_team_ = enemy_team;
+    map_model = new Map();
 }
-void createMap(){
-    QMap<QString, Tile> map;
-    for ( int i = 1; i < 161; i++){
+
+Map* Controller::initFight()
+{
+    map_model->makeMapModel(own_team_, enemy_team_);
+
+    return map_model;
+}
+
+bool Controller::startFight()
+{
+    if (map_model->giveTurn( own_team_->getPlebs())){
 
     }
 }
+
 

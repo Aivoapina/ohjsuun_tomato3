@@ -9,9 +9,31 @@ Map::Map(QObject *parent) : QAbstractListModel(parent)
 
 }
 
-void Map::setMapModel(QList<Tile> new_map)
+void Map::makeMapModel(ArenaTeam *own_team, ArenaTeam *enemy_team)
 {
-    map = new_map;
+    //QList<Tile> new_map;
+    QString location = "assets/grass_texture.jpg";
+    int j = 0;
+    for(int i = 0; i < 160; i++){
+        if ( i > 2 and i < 7 ){
+            if ( j < enemy_team->getPlebs().size() ){
+                map.append( Tile( enemy_team->getPlebs().at(j), location, true ) );
+                j++;
+                continue;
+            } else if( i == 6 ){
+                j = 0;
+            }
+        }
+        if ( i > 152 and i < 157 ){
+            if ( j < own_team->getPlebs().size() ){
+                map.append( Tile( own_team->getPlebs().at(j), location, true ) );
+                j++;
+                continue;
+            }
+        }
+        map.append( Tile( nullptr, location ) );
+    }
+
 }
 
 void Map::liikuJohonkin(const QString &direction, const int &index)
@@ -30,13 +52,13 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
         }
         map.swap(index, index-1);
     } else if(direction == "up" ){
-        if (index < 11 or map.at(index-10).isSolid()){
+        if (index < 10 or map.at(index-10).isSolid()){
             qDebug() << "Can't move there";
             return;
         }
         map.swap(index, index-10);
     } else if(direction == "down" ){
-        if (index > 150 or map.at(index+10).isSolid()){
+        if (index > 149 or map.at(index+10).isSolid()){
             qDebug() << "Can't move there";
             return;
         }

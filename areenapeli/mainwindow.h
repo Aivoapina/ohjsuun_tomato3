@@ -8,6 +8,7 @@
 #include "arenateam.h"
 #include "plebruutu.h"
 #include "lintulawindow.h"
+#include "controller.h"
 
 namespace Ui{
 class MainWindow;

@@ -170,7 +170,8 @@ void MainWindow::pleb4_selected()
 void MainWindow::on_startGame_clicked()
 {
     FightingScene *window = new FightingScene(ui->keskiWidget);
-    if ( !window->initFight(myteam_, myteam_)){
+    Controller * controller = new Controller(myteam_, myteam_);
+    if ( !window->initScene(controller->initFight())){
         qDebug() << "Error";
         return;
     }
