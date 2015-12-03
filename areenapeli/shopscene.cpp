@@ -51,12 +51,19 @@ void shopscene::refresh_plebs()
 
 void shopscene::on_ButtonBuy_clicked()
 {
-    //if ui->treeWidget->
-    //valittu objecti palautuu tähän.
-    //objektin arvot lisätään
+    if (!ui->treeWidget->currentItem()){
+        return;
+    }
     qDebug() << ui->treeWidget->currentItem()->data(4,2).toString();
-
+    if (!myteam_->return_selected()){
+        return;
+    }
+    if (ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()
+            >= myteam_->get_raha()){
+        return;
+    }
     myteam_->return_selected()->osta_ase(ui->treeWidget->currentItem()->data(4,2).toString());
+    myteam_->lisaa_rahaa(-(ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()));
     emit tavara_ostettu();
     //std::shared_ptr<ArenaMember> selection_;
 
