@@ -15,7 +15,10 @@ shopscene::shopscene(ArenaTeam *myteam, QWidget *parent) :
 
     myteam_ = myteam;
     ui->setupUi(this);
-
+    aseet = new QTreeWidgetItem(ui->treeWidget);
+    aseet->setText(0,"Aseet");
+    panssarit = new QTreeWidgetItem(ui->treeWidget);
+    panssarit->setText(0,"Panssarit");
     Shopobject alien;
     QList<Shopobject> list_shopobjects;
     list_shopobjects = alien.refreshresults();
@@ -23,13 +26,18 @@ shopscene::shopscene(ArenaTeam *myteam, QWidget *parent) :
     unsigned int a;
     a = alien.countobjects(list_shopobjects);
     for (unsigned int i=0; i<a; i++) {
-        QTreeWidgetItem *itm = new QTreeWidgetItem(ui->treeWidget);
+        QTreeWidgetItem *itm = new QTreeWidgetItem();
         itm->setText(0,list_shopobjects.at(i).r_name());
         itm->setText(1,list_shopobjects.at(i).r_price());
         itm->setText(2,list_shopobjects.at(i).r_damin());
         itm->setText(3,list_shopobjects.at(i).r_damout());
         itm->setData(4,2,list_shopobjects.at(i).toQString());
-
+        if( list_shopobjects.at(i).r_damin() == "0" ){
+            ui->treeWidget->itemAt(0,0)->addChild(itm);
+        }
+        else{
+            ui->treeWidget->itemBelow(ui->treeWidget->itemAt(0,0))->addChild(itm);
+        }
     }
     ui->label_7->setText("Weapon");
     ui->label_8->setText("Defence");
@@ -51,7 +59,7 @@ void shopscene::refresh_plebs()
 
 void shopscene::on_ButtonBuy_clicked()
 {
-    if (!ui->treeWidget->currentItem()){
+    if (!ui->treeWidget->currentItem() or ui->treeWidget->currentItem()->data(4,2).toString() == ""){
         return;
     }
     qDebug() << ui->treeWidget->currentItem()->data(4,2).toString();

@@ -43,6 +43,8 @@ private:
     Ui::shopscene *ui;
     vector<item_struct> list_shopobjects;
     ArenaTeam *myteam_;
+    QTreeWidgetItem *aseet;
+    QTreeWidgetItem *panssarit;
  //   std::shared_ptr<ArenaMember> selection_;
 };
 
