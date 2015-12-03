@@ -21,7 +21,17 @@ Shopobject::Shopobject()
 
 }
 
+Shopobject::Shopobject(QString data)
+{
+
+}
+
 Shopobject::~Shopobject(){}
+
+QString Shopobject::toQString()
+{
+    return "";
+}
 
 vector<shobject> Shopobject::refreshresults(){
     vector<shobject> list_shopobjects;

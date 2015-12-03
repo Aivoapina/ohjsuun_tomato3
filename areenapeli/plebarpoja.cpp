@@ -46,6 +46,10 @@ std::shared_ptr<ArenaMember> plebArpoja::arvoPleb()
     //hinta
     data.push_back( laske_hinta(data) );
 
+    //ase ja panssari jätetään tyhjiksi
+    QString tyhja("");
+    data.push_back(tyhja);
+    data.push_back(tyhja);
 
     std::shared_ptr<ArenaMember> arvottu(new ArenaMember(data));
     return arvottu;

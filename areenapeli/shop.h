@@ -18,7 +18,11 @@ class Shopobject{
 public:
 
     Shopobject();
+    Shopobject(QString data);//tälle toteutus
     ~Shopobject();
+
+    QString toQString(); // tälle toteutus
+
     void buyobject();
     void sellobject();
     vector<shobject> refreshresults();

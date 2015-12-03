@@ -29,8 +29,12 @@ public:
     void lisaa_maxhp();
     void lisaa_power();
 
+    void osta_ase();
+    void osta_armor();
+
     //0 indeksistä löytyy otettu osuma ja 1 indeksistä kuvaus tapahtuneesta
     QStringList laske_osuma(int saapuva);
+
 
     QString r_rotu() const;
     QString r_nimi() const;
@@ -40,6 +44,9 @@ public:
     int r_armor() const;
     int r_liike() const;
     int r_nopeus() const;
+
+    Shopobject *r_panssari() const;
+    Shopobject *r_ase() const;
 
     QString r_iconPath() const;
     int r_hinta() const;
@@ -52,8 +59,8 @@ private:
     int hinta_;
     QString iconPath_;
 
-    shobject armor_;
-    shobject ase_;
+    Shopobject *armor_;
+    Shopobject *ase_;
 
 
 };

@@ -30,8 +30,19 @@ ArenaMember::ArenaMember(QStringList data)
     stats_.liike = data[5].toInt();
     stats_.nopeus = data[6].toInt();
     hinta_ = data[7].toInt();
-    qDebug()<<hinta_;
-   // iconPath_ = data[4];
+
+    if( data[8] == "" ){
+        armor_ = nullptr;
+    }
+    else{
+        armor_ = new Shopobject(data[8]);
+    }
+    if( data[9] == ""){
+        ase_ = nullptr;
+    }
+    else{
+        ase_ = new Shopobject(data[9]);
+    }
 }
 
 ArenaMember::ArenaMember(const ArenaMember &a)
@@ -44,8 +55,8 @@ ArenaMember::ArenaMember(const ArenaMember &a)
     stats_.liike = a.r_liike();
     stats_.nopeus = a.r_nopeus();
     hinta_ = a.r_hinta();
-
-    //iconPath_ = a.r_iconPath();
+    armor_ = a.r_panssari();
+    ase_ = a.r_ase();
 }
 
 ArenaMember::~ArenaMember()
@@ -60,6 +71,24 @@ void ArenaMember::lisaa_maxhp()
 void ArenaMember::lisaa_power()
 {
     stats_.power++;
+}
+
+void ArenaMember::osta_ase()
+{
+
+}
+
+void ArenaMember::osta_armor()
+{
+
+}
+
+QStringList ArenaMember::laske_osuma(int saapuva)
+{
+    QStringList osuma_selitys;
+    osuma_selitys.push_back(QString::number(saapuva));
+    osuma_selitys.push_back(r_nimi()+ ": Otti " + QString::number(saapuva)+ " damagea");
+    return osuma_selitys;
 }
 
 QString ArenaMember::r_rotu() const
@@ -97,6 +126,16 @@ int ArenaMember::r_nopeus() const
     return stats_.nopeus;
 }
 
+Shopobject *ArenaMember::r_panssari() const
+{
+    return armor_;
+}
+
+Shopobject *ArenaMember::r_ase() const
+{
+    return ase_;
+}
+
 QString ArenaMember::r_nimi() const
 {
     return nimi_;
@@ -118,6 +157,18 @@ QStringList ArenaMember::r_data()
     data.append(QString::number(stats_.liike));
     data.append(QString::number(stats_.nopeus));
     data.append(QString::number(hinta_));
+    if(armor_ == nullptr ){
+        data.append("");
+    }
+    else{
+        data.append(armor_->toQString());
+    }
+    if(ase_ == nullptr ){
+        data.append("");
+    }
+    else{
+        data.append(ase_->toQString());
+    }
     return data;
 }
 
