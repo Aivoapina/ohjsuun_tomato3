@@ -1,3 +1,4 @@
 kyrpärä;500;5;0
 mahtimiekka;1000;0;2d6
 LIKANENVITTUSAAATANA;9001;999;20d50
+tommintoimisto;40;0;7
