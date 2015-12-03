@@ -39,8 +39,6 @@ shopscene::shopscene(ArenaTeam *myteam, QWidget *parent) :
             ui->treeWidget->itemBelow(ui->treeWidget->itemAt(0,0))->addChild(itm);
         }
     }
-    ui->label_7->setText("Weapon");
-    ui->label_8->setText("Defence");
 
 }
 
@@ -70,9 +68,30 @@ void shopscene::on_ButtonBuy_clicked()
             >= myteam_->get_raha()){
         return;
     }
-    myteam_->return_selected()->osta_ase(ui->treeWidget->currentItem()->data(4,2).toString());
-    myteam_->lisaa_rahaa(-(ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()));
-    emit tavara_ostettu();
+    if( ui->treeWidget->currentItem()->parent()->text(0) == "Aseet" ){
+        if( myteam_->return_selected()->r_ase() == nullptr ){
+            myteam_->return_selected()->osta_ase(ui->treeWidget->currentItem()->data(4,2).toString());
+            myteam_->lisaa_rahaa(-(ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()));
+            emit tavara_ostettu();
+        }
+        else{
+            ui->infoRuutu->clear();
+            ui->infoRuutu->setText("Myy ensin vanha aseesi!");
+        }
+    }
+    else{
+        if( myteam_->return_selected()->r_panssari() == nullptr ){
+            myteam_->return_selected()->osta_armor(ui->treeWidget->currentItem()->data(4,2).toString());
+            myteam_->lisaa_rahaa(-(ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()));
+            emit tavara_ostettu();
+        }
+        else{
+            ui->infoRuutu->clear();
+            ui->infoRuutu->setText("Myy ensin vanha panssarisi!");
+        }
+    }
+
+
     //std::shared_ptr<ArenaMember> selection_;
 
 }
