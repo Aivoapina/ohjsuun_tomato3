@@ -63,7 +63,7 @@ QString Shopobject::toQString() const
 QList<Shopobject> Shopobject::refreshresults(){
     QList<Shopobject> list_shopobjects;
 
-    QFile fileobject("objectlist.txt");
+    QFile fileobject(":/assets/tavaroiden_alustus.txt");
 
     if ( fileobject.open(QIODevice::ReadOnly) ) {
         QTextStream stream(&fileobject);

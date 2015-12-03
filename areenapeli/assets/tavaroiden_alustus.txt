@@ -1,0 +1,2 @@
+kyrpärä;500;5;0
+mahtimiekka;1000;0;2d6

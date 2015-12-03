@@ -30,7 +30,7 @@ shopscene::shopscene(ArenaTeam *myteam, QWidget *parent) :
         itm->setData(4,2,list_shopobjects.at(i).toQString());
 
     }
-    ui->label_7->setText("Wepon");
+    ui->label_7->setText("Weapon");
     ui->label_8->setText("Defence");
 
 }
