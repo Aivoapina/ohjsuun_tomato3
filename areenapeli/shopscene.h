@@ -8,6 +8,9 @@
 #include <string>
 #include <QtGui>
 #include <QDialog>
+#include "arenateam.h"
+#include "arenamember.h"
+
 using namespace std;
 namespace Ui {
 class shopscene;
@@ -19,7 +22,7 @@ class shopscene : public QWidget
     Q_OBJECT
 
 public:
-    explicit shopscene(QWidget *parent = 0);
+    explicit shopscene(ArenaTeam *myteam, QWidget *parent = 0);
     ~shopscene();
 
 private slots:
@@ -28,10 +31,14 @@ private slots:
     //void on_ButtonEXIT_clicked();
 
     //void on_tableWidget_activated(const QModelIndex &index);
+    void refresh_plebs();
+    void on_ButtonBuy_clicked();
 
 private:
     Ui::shopscene *ui;
-    vector<shobject> list_shopobjects;
+    vector<item_struct> list_shopobjects;
+    ArenaTeam *myteam_;
+    std::shared_ptr<ArenaMember> selection_;
 };
 
 #endif // shopscene    _H

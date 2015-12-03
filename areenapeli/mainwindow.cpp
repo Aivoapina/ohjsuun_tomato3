@@ -180,6 +180,6 @@ void MainWindow::on_startGame_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    shopscene *window = new shopscene(ui->keskiWidget);
+    shopscene *window = new shopscene(myteam_, ui->keskiWidget);
     window->show();
 }

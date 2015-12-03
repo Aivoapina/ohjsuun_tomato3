@@ -16,7 +16,6 @@ public:
     std::shared_ptr<ArenaMember> return_selected();
     void select(std::shared_ptr<ArenaMember> s);
     int get_raha();
-
     void lisaa_rahaa(int maara);
 
 private:

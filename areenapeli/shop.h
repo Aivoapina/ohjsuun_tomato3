@@ -3,11 +3,10 @@
 #include <iostream>
 #include <iomanip>
 #include <QString>
-#include <vector>
+#include <QList>
 
-using namespace std;
 
-struct shobject{
+struct item_struct{
     QString name;
     QString price;
     QString damain;
@@ -21,19 +20,23 @@ public:
     Shopobject(QString data);//tälle toteutus
     ~Shopobject();
 
-    QString toQString(); // tälle toteutus
+    QString r_name() const;
+    QString r_price() const;
+    QString r_damin() const;
+    QString r_damout() const;
+    QString toQString() const; // tälle toteutus shobject->Qstring
 
     void buyobject();
     void sellobject();
-    vector<shobject> refreshresults();
-    unsigned int countobjects(vector<shobject> list_shopobjects);
+    QList<Shopobject> refreshresults();
+    unsigned int countobjects(QList<Shopobject> list_shopobjects);
 private:
     /*string objectname_;
     int objectprice_;
     int objectdamagein_;
     int objectdamageout_;
     */
-    shobject x;
+    item_struct x;
 };
 
 void getobjects();

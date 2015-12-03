@@ -54,13 +54,13 @@
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Helmet:</string>
+       <string>First wepon:</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="0" alignment="Qt::AlignHCenter">
+    <item row="1" column="0" alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="labelWEPON">
       <property name="text">
        <string>NONE</string>
@@ -68,27 +68,13 @@
      </widget>
     </item>
     <item row="2" column="0" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>First wepon:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0" alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="label_8">
       <property name="text">
        <string>Defence:</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="labelHELMET">
-      <property name="text">
-       <string>NONE</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0" alignment="Qt::AlignHCenter">
+    <item row="3" column="0" alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="labelDEFENCE">
       <property name="text">
        <string>NONE</string>
@@ -96,6 +82,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="ButtonBuy">
+   <property name="geometry">
+    <rect>
+     <x>294</x>
+     <y>190</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>BUY SELECTED</string>
+   </property>
   </widget>
  </widget>
  <resources/>

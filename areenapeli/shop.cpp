@@ -10,6 +10,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QTextStream>
+#include <QList>
 
 using namespace std;
 
@@ -21,20 +22,46 @@ Shopobject::Shopobject()
 
 }
 
-Shopobject::Shopobject(QString data)
-{
-
+Shopobject::Shopobject(QString data){
+    QStringList list;
+    list = data.split(";");
+    x.name = list.at(0);
+    x.price = list.at(1);
+    x.damain = list.at(2);
+    x.damout = list.at(3);
 }
 
 Shopobject::~Shopobject(){}
 
-QString Shopobject::toQString()
+QString Shopobject::r_name() const
 {
-    return "";
+    return x.name;
 }
 
-vector<shobject> Shopobject::refreshresults(){
-    vector<shobject> list_shopobjects;
+QString Shopobject::r_price() const
+{
+    return x.price;
+}
+
+QString Shopobject::r_damin() const
+{
+    return x.damain;
+}
+
+QString Shopobject::r_damout() const
+{
+    return x.damout;
+}
+
+QString Shopobject::toQString() const
+{
+    QString changedstring{""};
+    changedstring = x.name+";"+x.price+";"+x.damain+";"+x.damout+";";
+    return changedstring;
+}
+
+QList<Shopobject> Shopobject::refreshresults(){
+    QList<Shopobject> list_shopobjects;
 
     QFile fileobject("objectlist.txt");
 
@@ -42,12 +69,7 @@ vector<shobject> Shopobject::refreshresults(){
         QTextStream stream(&fileobject);
         while( !stream.atEnd() ){
             QString row{stream.readLine()};
-            qDebug() << row;
-            QStringList tokens{row.split(';')};
-            x.name = tokens.at(0);
-            x.price = (tokens.at(1));
-            x.damain = (tokens.at(2));
-            x.damout = (tokens.at(3));
+            Shopobject x(row);
             list_shopobjects.push_back(x);
 
         }
@@ -61,12 +83,14 @@ vector<shobject> Shopobject::refreshresults(){
     return list_shopobjects;
 }
 
-unsigned int Shopobject::countobjects(vector<shobject> list_shopobjects)
+unsigned int Shopobject::countobjects(QList<Shopobject> list_shopobjects)
 {
     unsigned int a;
     a = list_shopobjects.size();
     return a;
 }
+
+
 
 //mitas kaikkea tarvitaan
 //taistelijat (rotu, arvo,
