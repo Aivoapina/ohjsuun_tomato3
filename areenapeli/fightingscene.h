@@ -17,15 +17,12 @@ class FightingScene : public QWidget
 public:
     explicit FightingScene(QWidget *parent = 0);
     ~FightingScene();
-    bool initFight(ArenaTeam *ownTeam, ArenaTeam *enemyTeam);
+    bool initScene(Map* mapmodel);
 
 public slots:
-    void moveTo(QString direction, int index);
 
 
 private:
-
-    Map* mapmodel;
     Ui::FightingScene *ui;
 };
 

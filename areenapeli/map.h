@@ -2,6 +2,7 @@
 #define MAP_H
 #include <QAbstractListModel>
 #include "tile.h"
+#include "arenateam.h"
 
 class Map : public QAbstractListModel
 {
@@ -15,7 +16,7 @@ public:
     };
     */
     Map(QObject *parent = 0);
-    void setMapModel( QList<Tile>);
+    void makeMapModel(ArenaTeam *own_team, ArenaTeam *enemy_team);
     //int giveIndex();
     Q_INVOKABLE void liikuJohonkin(const QString &direction, const int &index);
     //QHash<int, QByteArray> roleNames() const;
