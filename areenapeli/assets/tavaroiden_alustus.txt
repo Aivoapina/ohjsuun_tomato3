@@ -1,4 +1,16 @@
-kyrpärä;500;5;0
-mahtimiekka;1000;0;2d6
-LIKANENVITTUSAAATANA;9001;999;20d50
-tommintoimisto;40;0;7
+Puutikari;20;0;1
+Puusuojat;20;1;0
+Foliohaarniska;50;2;0
+Foliomäjäytin;50;0;1d3
+Alumiinihaskat;100;3;0
+Alumininen ruoska;100;0;1d4
+Metallinen olkapanssari;250;4;0
+Metallikirves;250;0;2;3
+Rautakypärä;500;5;0
+Katana;500;0;2d5
+Poliisin Kapinakilpi;750;7;0
+Varma poliisipamppu;750;0;6
+Mahtimiekka;1000;0;2d6
+Mahtikuplamuovisuojat;1000;10;0
+Timanntinen Zaijak-haarniska;3000;30;0
+Timanttinen Zaijak-miekka;3000;0;10+2d6
