@@ -1,11 +1,13 @@
 #include "plebruutu.h"
 #include "ui_plebruutu.h"
+#include <QDebug>
 
-plebRuutu::plebRuutu(std::shared_ptr<ArenaMember> pleb, QWidget *parent) :
+plebRuutu::plebRuutu(ArenaTeam* tiimi, std::shared_ptr<ArenaMember> pleb, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::plebRuutu)
 {
     ui->setupUi(this);
+    team = tiimi;
     pleb_ = pleb;
     paivita();
 
@@ -45,4 +47,42 @@ void plebRuutu::paivita()
 void plebRuutu::mousePressEvent(QMouseEvent *e)
 {
     e->ignore();
+}
+
+void plebRuutu::on_aseLabel_clicked()
+{
+    if( pleb_->r_ase() == nullptr ){
+        return;
+    }
+    else{
+        int myyntihinta{pleb_->r_ase()->r_price().toInt()};
+        QString viesti("Haluatko varmasti myydä aseesi? Saat " + pleb_->r_ase()->r_price() + "g takaisin." );
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Olet myymässä aseesi", viesti, QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            // myy ase
+            pleb_->osta_ase("myyty");
+            team->lisaa_rahaa(myyntihinta);
+        }
+    }
+    // haluatko myydä aseesi????
+}
+
+void plebRuutu::on_panssariLabel_clicked()
+{
+    // haluatko myydä
+    if( pleb_->r_panssari() == nullptr ){
+        return;
+    }
+    else{
+        int myyntihinta{pleb_->r_panssari()->r_price().toInt()};
+        QString viesti("Haluatko varmasti myydä panssarisi? Saat " + pleb_->r_panssari()->r_price() + "g takaisin." );
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Olet myymässä panssarisi", viesti, QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            // myy ase
+            pleb_->osta_armor("myyty");
+            team->lisaa_rahaa(myyntihinta);
+        }
+    }
 }

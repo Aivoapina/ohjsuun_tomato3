@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>270</width>
-    <height>204</height>
+    <width>279</width>
+    <height>209</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -61,7 +61,7 @@
   <widget class="QLabel" name="alamuuta">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>90</x>
      <y>110</y>
      <width>141</width>
      <height>17</height>
@@ -74,7 +74,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>90</x>
      <y>150</y>
      <width>141</width>
      <height>17</height>
@@ -84,26 +84,26 @@
     <string>Panssari:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="aseLabel">
+  <widget class="QPushButton" name="aseLabel">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>90</x>
      <y>130</y>
-     <width>151</width>
-     <height>17</height>
+     <width>181</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>  </string>
+    <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="panssariLabel">
+  <widget class="QPushButton" name="panssariLabel">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>90</x>
      <y>170</y>
-     <width>151</width>
-     <height>17</height>
+     <width>181</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
@@ -115,7 +115,7 @@
     <rect>
      <x>10</x>
      <y>110</y>
-     <width>101</width>
+     <width>71</width>
      <height>88</height>
     </rect>
    </property>

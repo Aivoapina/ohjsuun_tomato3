@@ -1,6 +1,7 @@
 #include <QApplication>
 #include "mainwindow.h"
 #include <QTime>
+#include "arenateam.h"
 
 int main(int argc, char *argv[])
 {

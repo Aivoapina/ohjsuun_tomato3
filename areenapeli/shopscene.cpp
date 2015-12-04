@@ -23,6 +23,12 @@ shopscene::shopscene(ArenaTeam *myteam, QWidget *parent) :
     QList<Shopobject> list_shopobjects;
     list_shopobjects = alien.refreshresults();
     ui->treeWidget->setColumnCount(4);
+    ui->treeWidget->setColumnWidth(0,250);
+    ui->treeWidget->setColumnWidth(1,60);
+    ui->treeWidget->setColumnWidth(2,60);
+    ui->treeWidget->setColumnWidth(3,60);
+
+
     unsigned int a;
     a = alien.countobjects(list_shopobjects);
     for (unsigned int i=0; i<a; i++) {
@@ -39,6 +45,7 @@ shopscene::shopscene(ArenaTeam *myteam, QWidget *parent) :
             ui->treeWidget->itemBelow(ui->treeWidget->itemAt(0,0))->addChild(itm);
         }
     }
+    ui->treeWidget->expandAll();
 
 }
 
@@ -79,7 +86,7 @@ void shopscene::on_ButtonBuy_clicked()
             //ui->infoRuutu->setText("Myy ensin vanha aseesi!");
         }
     }
-    else{
+    else if( ui->treeWidget->currentItem()->parent()->text(0) == "Panssarit"){
         if( myteam_->return_selected()->r_panssari() == nullptr ){
             myteam_->return_selected()->osta_armor(ui->treeWidget->currentItem()->data(4,2).toString());
             myteam_->lisaa_rahaa(-(ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()));
@@ -90,8 +97,5 @@ void shopscene::on_ButtonBuy_clicked()
             //ui->infoRuutu->setText("Myy ensin vanha panssarisi!");
         }
     }
-
-
-    //std::shared_ptr<ArenaMember> selection_;
 
 }

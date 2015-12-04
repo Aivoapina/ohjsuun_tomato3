@@ -1,12 +1,15 @@
 #include "arenateam.h"
 #include <QDebug>
 
-ArenaTeam::ArenaTeam()
+ArenaTeam::ArenaTeam(QObject *parent)
+    :QObject(parent)
 {
     name = "Tiimi";
     gold = 9000;
     selected = nullptr;
 }
+
+
 
 void ArenaTeam::buyNewMember(std::shared_ptr<ArenaMember> newpleb)
 {
@@ -33,6 +36,7 @@ int ArenaTeam::get_raha()
 void ArenaTeam::lisaa_rahaa(int maara)
 {
     gold = gold + maara;
+    emit tiedot_muuttunut();
 }
 
 
