@@ -8,17 +8,22 @@ Tile::Tile(std::shared_ptr<ArenaMember> pleb, QString pictureDir, bool solidBloc
     hero = pleb;
 }
 
-QString Tile::givePicture()
+QString Tile::givePicture() const
 {
     return picture;
 }
 
-QString Tile::getHeroPic()
+QString Tile::getHeroPic() const
 {
     if (hero == nullptr){
         return "";
     }
-    return hero->r_iconPath();
+    return "assets/bull_ingame.png";
+}
+
+std::shared_ptr<ArenaMember> Tile::getHero() const
+{
+    return hero;
 }
 
 bool Tile::isSolid() const

@@ -15,15 +15,20 @@ class FightingScene : public QWidget
     Q_OBJECT
 
 public:
-    explicit FightingScene(QWidget *parent = 0);
+    explicit FightingScene(ArenaTeam *my_team, ArenaTeam *enemy_team, QWidget *parent = 0);
     ~FightingScene();
     bool initScene(Map* mapmodel);
 
 public slots:
 
 
+private slots:
+    void on_endTurn_clicked();
+
 private:
     Ui::FightingScene *ui;
+    Controller* control;
+    Map* mapmodel;
 };
 
 #endif // FIGHTINGSCENE_H

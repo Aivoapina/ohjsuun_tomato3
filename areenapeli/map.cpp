@@ -9,10 +9,9 @@ Map::Map(QObject *parent) : QAbstractListModel(parent)
 
 }
 
-void Map::makeMapModel(ArenaTeam *own_team, ArenaTeam *enemy_team)
+Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team)
 {
-    //QList<Tile> new_map;
-    QString location = "assets/grass_texture.jpg";
+    QString location = "assets/grass_texture.png";
     int j = 0;
     for(int i = 0; i < 160; i++){
         if ( i > 2 and i < 7 ){
@@ -33,12 +32,32 @@ void Map::makeMapModel(ArenaTeam *own_team, ArenaTeam *enemy_team)
         }
         map.append( Tile( nullptr, location ) );
     }
+    control = new Controller(own_team, enemy_team);
 
+    if ( !findPleb( control->startFight() ) ){
+        qDebug() << "rip";
+    }
+    return control;
+}
+
+bool Map::findPleb(std::shared_ptr<ArenaMember> pleb)
+{
+    for (int i = 0; i < map.count(); i++ ){
+        if ( map.at(i).getHero() == pleb ){
+            m_index = i;
+            indexChanged(m_index);
+            return true;
+        }
+    }
+    return false;
 }
 
 void Map::liikuJohonkin(const QString &direction, const int &index)
 {
     layoutAboutToBeChanged();
+    if ( !control->canMemberMove( map.at(index).getHero() ) ){
+        return;
+    }
     if (direction == "right"){
         if (index % 10 == 9 or map.at(index+1).isSolid() ){
             qDebug() << "Can't move there";
@@ -77,7 +96,7 @@ QHash<int, QByteArray> Map::roleNames() const
 
 
 
-int Map::rowCount(const QModelIndex & parent ) const
+int Map::rowCount(const QModelIndex & /*parent*/ ) const
 {
     return map.count();
 }

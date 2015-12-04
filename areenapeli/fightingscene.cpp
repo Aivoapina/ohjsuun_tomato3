@@ -7,11 +7,17 @@
 #include "tile.h"
 #include "map.h"
 
-FightingScene::FightingScene(QWidget *parent) :
+FightingScene::FightingScene(ArenaTeam* my_team, ArenaTeam* enemy_team, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FightingScene)
 {
     ui->setupUi(this);
+
+    mapmodel = new Map();
+    control = mapmodel->startFight(my_team, enemy_team);
+    ui->qmlView->rootContext()->setContextProperty("myModel", mapmodel);
+    ui->qmlView->setSource(QUrl("qrc:/main.qml"));
+
 
 }
 
@@ -20,10 +26,7 @@ FightingScene::~FightingScene()
     delete ui;
 }
 
-bool FightingScene::initScene(Map *mapmodel)
+void FightingScene::on_endTurn_clicked()
 {
-    ui->qmlView->rootContext()->setContextProperty("myModel", mapmodel);
-    ui->qmlView->setSource(QUrl("qrc:/main.qml"));
-
-    return true;
+    control->endTurn();
 }

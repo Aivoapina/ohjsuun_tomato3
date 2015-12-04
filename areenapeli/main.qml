@@ -18,6 +18,8 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: grid.currentIndex = index
+
+
                 }
                 states: [
                     State {

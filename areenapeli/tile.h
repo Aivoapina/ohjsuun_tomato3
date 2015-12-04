@@ -10,8 +10,9 @@ class Tile
 {
 public:
     Tile(std::shared_ptr<ArenaMember> pleb, QString pictureDir, bool solidBlock = false);
-    QString givePicture();
-    QString getHeroPic();
+    QString givePicture() const;
+    QString getHeroPic() const;
+    std::shared_ptr<ArenaMember> getHero() const;
     bool isSolid() const;
 
 private:

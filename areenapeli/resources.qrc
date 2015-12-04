@@ -7,5 +7,7 @@
         <file>assets/karhujaba.png</file>
         <file>assets/kettutydy.png</file>
         <file>assets/tavaroiden_alustus.txt</file>
+        <file>assets/grass_texture.png</file>
+        <file>assets/bull_ingame.png</file>
     </qresource>
 </RCC>
