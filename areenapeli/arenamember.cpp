@@ -75,13 +75,22 @@ void ArenaMember::lisaa_power()
 
 void ArenaMember::osta_ase(QString d)
 {
-    qDebug() << "asdasddsasad";
-    ase_ = new Shopobject(d);
+    if ( d == "myyty" ){
+        ase_ = nullptr;
+    }
+    else{
+        ase_ = new Shopobject(d);
+    }
 }
 
 void ArenaMember::osta_armor(QString d)
 {
-    armor_ = new Shopobject(d);
+    if ( d == "myyty" ){
+        armor_ = nullptr;
+    }
+    else{
+        armor_ = new Shopobject(d);
+    }
 }
 
 QStringList ArenaMember::laske_osuma(int saapuva)

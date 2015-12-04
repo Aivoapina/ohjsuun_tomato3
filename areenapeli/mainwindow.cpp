@@ -18,10 +18,12 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),
     ui->rahaLabel->setText(QString::number(myteam_->get_raha()));
 
 
+    connect(myteam_, SIGNAL(tiedot_muuttunut()), this, SLOT(refresh_plebs()));
     connect(ui->pleb1, SIGNAL(clicked()), this, SLOT(pleb1_selected()));
     connect(ui->pleb2, SIGNAL(clicked()), this, SLOT(pleb2_selected()));
     connect(ui->pleb3, SIGNAL(clicked()), this, SLOT(pleb3_selected()));
     connect(ui->pleb4, SIGNAL(clicked()), this, SLOT(pleb4_selected()));
+
 
 
 }
@@ -61,31 +63,31 @@ void MainWindow::refresh_plebs()
         delete i;
     }
     if( myteam_->getPlebs().size() == 4 ){
-        plebRuutu *w = new plebRuutu(myteam_->getPlebs()[0], ui->pleb1);
+        plebRuutu *w = new plebRuutu(myteam_, myteam_->getPlebs()[0], ui->pleb1);
         w->show();
-        plebRuutu *w2 = new plebRuutu(myteam_->getPlebs()[1], ui->pleb2);
+        plebRuutu *w2 = new plebRuutu(myteam_,myteam_->getPlebs()[1], ui->pleb2);
         w2->show();
-        plebRuutu *w3 = new plebRuutu(myteam_->getPlebs()[2], ui->pleb3);
+        plebRuutu *w3 = new plebRuutu(myteam_,myteam_->getPlebs()[2], ui->pleb3);
         w3->show();
-        plebRuutu *w4 = new plebRuutu(myteam_->getPlebs()[3], ui->pleb4);
+        plebRuutu *w4 = new plebRuutu(myteam_,myteam_->getPlebs()[3], ui->pleb4);
         w4->show();
     }
     else if( myteam_->getPlebs().size() == 3 ){
-        plebRuutu *w = new plebRuutu(myteam_->getPlebs()[0], ui->pleb1);
+        plebRuutu *w = new plebRuutu(myteam_,myteam_->getPlebs()[0], ui->pleb1);
         w->show();
-        plebRuutu *w2 = new plebRuutu(myteam_->getPlebs()[1], ui->pleb2);
+        plebRuutu *w2 = new plebRuutu(myteam_,myteam_->getPlebs()[1], ui->pleb2);
         w2->show();
-        plebRuutu *w3 = new plebRuutu(myteam_->getPlebs()[2], ui->pleb3);
+        plebRuutu *w3 = new plebRuutu(myteam_,myteam_->getPlebs()[2], ui->pleb3);
         w3->show();
     }
     else if( myteam_->getPlebs().size() == 2 ){
-        plebRuutu *w = new plebRuutu(myteam_->getPlebs()[0], ui->pleb1);
+        plebRuutu *w = new plebRuutu(myteam_,myteam_->getPlebs()[0], ui->pleb1);
         w->show();
-        plebRuutu *w2 = new plebRuutu(myteam_->getPlebs()[1], ui->pleb2);
+        plebRuutu *w2 = new plebRuutu(myteam_,myteam_->getPlebs()[1], ui->pleb2);
         w2->show();
     }
     else if( myteam_->getPlebs().size() == 1 ){
-        plebRuutu *w = new plebRuutu(myteam_->getPlebs()[0], ui->pleb1);
+        plebRuutu *w = new plebRuutu(myteam_,myteam_->getPlebs()[0], ui->pleb1);
         w->show();
     }
 
