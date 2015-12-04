@@ -82,6 +82,7 @@ void shopscene::on_ButtonBuy_clicked()
         if( myteam_->return_selected()->r_ase() == nullptr ){
             myteam_->return_selected()->osta_ase(ui->treeWidget->currentItem()->data(4,2).toString());
             myteam_->lisaa_rahaa(-(ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()));
+            ui->infoRuutu->setText("Ostit Aseen: "+ ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(0));
             emit tavara_ostettu();
         }
         else{
@@ -93,6 +94,7 @@ void shopscene::on_ButtonBuy_clicked()
         if( myteam_->return_selected()->r_panssari() == nullptr ){
             myteam_->return_selected()->osta_armor(ui->treeWidget->currentItem()->data(4,2).toString());
             myteam_->lisaa_rahaa(-(ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()));
+            ui->infoRuutu->setText("Ostit Panssarin: "+ ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(0));
             emit tavara_ostettu();
         }
         else{
