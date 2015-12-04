@@ -14,7 +14,7 @@ kiltahuone::kiltahuone(ArenaTeam *tiimi, QWidget *parent) :
     model_ = new kiltaModel();
     model_->makePleb();
     ui->listView->setModel(model_);
-    connect(ui->listView, SIGNAL(clicked(QModelIndex)), this, SLOT(view_clicked()));
+    connect(ui->listView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(view_clicked()));
     setUpdatesEnabled(true);
     ui->listView->setUpdatesEnabled(true);
 }

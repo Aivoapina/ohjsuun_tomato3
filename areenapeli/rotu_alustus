@@ -1,6 +1,9 @@
 //rotu;nimet;HP_RANGE;VOIMA_RANGE;armor;liike;nopeus;panssari;ase;
-ihminen;Panu,Tommi,Juuso,Rudi,Anssi,Konsta,Juho,Miska,Sauli;10-20;5-8;0;1;5
-kettutydy;Anu,Sexy,Äksy,Turri,Liisu,Lissu,Liisi,Liisa,Liinu,Tiinu;8-12;4-6;0;1;9
-bull;Timo,Risto,Riski,Rankka,Raaka,Kari,Kustaa;13-18;10-14;0;1;1
-karhujaba;Otso,Mesi,Nalle,Puh,Yogi,Pedo;20-28;6-9;1;1;1
-mahtikani;Jänö,Jussi,Pupu,Puppe;5-12;3-9;1;1;15
+teekkari;cirrus~,tommijama,move,rudipls,Aivoapina,Kokkeli,Jyhiz,MisQ,Isaul;10-20;5-8;0;1;5
+kettutydy;Anu,Sexy,Äksy,Turri,Saara,Liisa,Kiira,Tiinu;8-12;4-6;0;1;9
+bull;Timo,Risto,Riski,Rankka,Raaka,Kari,Kustaa,Tony;13-18;10-14;0;1;1
+karhujaba;Otso,Mesi,Nalle,Puh,Yogi,Pedo,Luppakorva;20-28;6-9;5;1;1
+mahtikani;Jänö,Jussi,Pupu,Puppe,Rumpali;5-12;3-9;1;1;15
+ihminen;Miika,Saku,Akseli,Masi,Olli,Touko;10-20;3-6;0;1;7
+siili;Mauno,Kalle,Vihtori,Tapani;5-12;2-8;3;1;4
+humanisti;Veera,Maija,Tuuli,Jenna,Mirkka,Tiina,Linda;12-24;6-9;3;1;4

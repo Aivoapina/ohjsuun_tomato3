@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),
 
     ui->rahaLabel->setText(QString::number(myteam_->get_raha()));
 
+    ui->pleb1->setFrameStyle(QFrame::NoFrame);
+    ui->pleb2->setFrameStyle(QFrame::NoFrame);
+    ui->pleb3->setFrameStyle(QFrame::NoFrame);
+    ui->pleb4->setFrameStyle(QFrame::NoFrame);
+
 
     connect(myteam_, SIGNAL(tiedot_muuttunut()), this, SLOT(refresh_plebs()));
     connect(ui->pleb1, SIGNAL(clicked()), this, SLOT(pleb1_selected()));
@@ -98,7 +103,7 @@ void MainWindow::on_lintulaButton_clicked()
     for(auto i: ui->keskiWidget->children()){
         delete i;
     }
-    lintulaWindow *w = new lintulaWindow(ui->keskiWidget);
+    lintulaWindow *w = new lintulaWindow(myteam_, ui->keskiWidget);
     connect(w, SIGNAL(lisaa_hp()), this, SLOT(hp_ostettu()));
     connect(w, SIGNAL(lisaa_power()), this, SLOT(power_ostettu()));
     w->show();
@@ -133,38 +138,38 @@ void MainWindow::power_ostettu()
 
 void MainWindow::pleb1_selected()
 {
-    ui->pleb1->setFrameShadow(QFrame::Raised);
+    ui->pleb1->setFrameStyle(QFrame::Box);
     myteam_->select(myteam_->getPlebs()[0]);
-    ui->pleb2->setFrameShadow(QFrame::Sunken);
-    ui->pleb3->setFrameShadow(QFrame::Sunken);
-    ui->pleb4->setFrameShadow(QFrame::Sunken);
+    ui->pleb2->setFrameStyle(QFrame::NoFrame);
+    ui->pleb3->setFrameStyle(QFrame::NoFrame);
+    ui->pleb4->setFrameStyle(QFrame::NoFrame);
 }
 
 void MainWindow::pleb2_selected()
 {
-    ui->pleb2->setFrameShadow(QFrame::Raised);
+    ui->pleb2->setFrameStyle(QFrame::Box);
     myteam_->select(myteam_->getPlebs()[1]);
-    ui->pleb1->setFrameShadow(QFrame::Sunken);
-    ui->pleb3->setFrameShadow(QFrame::Sunken);
-    ui->pleb4->setFrameShadow(QFrame::Sunken);
+    ui->pleb1->setFrameStyle(QFrame::NoFrame);
+    ui->pleb3->setFrameStyle(QFrame::NoFrame);
+    ui->pleb4->setFrameStyle(QFrame::NoFrame);
 }
 
 void MainWindow::pleb3_selected()
 {
-    ui->pleb3->setFrameShadow(QFrame::Raised);
+    ui->pleb3->setFrameStyle(QFrame::Box);
     myteam_->select(myteam_->getPlebs()[2]);
-    ui->pleb2->setFrameShadow(QFrame::Sunken);
-    ui->pleb1->setFrameShadow(QFrame::Sunken);
-    ui->pleb4->setFrameShadow(QFrame::Sunken);
+    ui->pleb2->setFrameStyle(QFrame::NoFrame);
+    ui->pleb1->setFrameStyle(QFrame::NoFrame);
+    ui->pleb4->setFrameStyle(QFrame::NoFrame);
 }
 
 void MainWindow::pleb4_selected()
 {
-    ui->pleb4->setFrameShadow(QFrame::Raised);
+    ui->pleb4->setFrameStyle(QFrame::Box);
     myteam_->select(myteam_->getPlebs()[3]);
-    ui->pleb2->setFrameShadow(QFrame::Sunken);
-    ui->pleb3->setFrameShadow(QFrame::Sunken);
-    ui->pleb1->setFrameShadow(QFrame::Sunken);
+    ui->pleb2->setFrameStyle(QFrame::NoFrame);
+    ui->pleb3->setFrameStyle(QFrame::NoFrame);
+    ui->pleb1->setFrameStyle(QFrame::NoFrame);
 }
 
 

@@ -65,36 +65,41 @@ void shopscene::refresh_plebs()
 void shopscene::on_ButtonBuy_clicked()
 {
     if (!ui->treeWidget->currentItem() or ui->treeWidget->currentItem()->data(4,2).toString() == ""){
+        ui->infoRuutu->setText("Valitse hahmosi painamalla hahmon ruutua!");
         return;
     }
     qDebug() << ui->treeWidget->currentItem()->data(4,2).toString();
     if (!myteam_->return_selected()){
+        ui->infoRuutu->setText("Sinulla ei ole valittuja hahmoja.");
         return;
     }
     if (ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()
             >= myteam_->get_raha()){
+        ui->infoRuutu->setText("Sinulla ei ole tarpeeksi rahaa tätä ostosta varten.");
         return;
     }
     if( ui->treeWidget->currentItem()->parent()->text(0) == "Aseet" ){
         if( myteam_->return_selected()->r_ase() == nullptr ){
             myteam_->return_selected()->osta_ase(ui->treeWidget->currentItem()->data(4,2).toString());
             myteam_->lisaa_rahaa(-(ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()));
+            ui->infoRuutu->setText("Ostit Aseen: "+ ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(0));
             emit tavara_ostettu();
         }
         else{
-            //ui->infoRuutu->clear();
-            //ui->infoRuutu->setText("Myy ensin vanha aseesi!");
+            ui->infoRuutu->clear();
+            ui->infoRuutu->setText("Myy ensin vanha aseesi!");
         }
     }
     else if( ui->treeWidget->currentItem()->parent()->text(0) == "Panssarit"){
         if( myteam_->return_selected()->r_panssari() == nullptr ){
             myteam_->return_selected()->osta_armor(ui->treeWidget->currentItem()->data(4,2).toString());
             myteam_->lisaa_rahaa(-(ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()));
+            ui->infoRuutu->setText("Ostit Panssarin: "+ ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(0));
             emit tavara_ostettu();
         }
         else{
-            //ui->infoRuutu->clear();
-            //ui->infoRuutu->setText("Myy ensin vanha panssarisi!");
+            ui->infoRuutu->clear();
+            ui->infoRuutu->setText("Myy ensin vanha panssarisi!");
         }
     }
 
