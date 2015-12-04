@@ -82,8 +82,8 @@ void shopscene::on_ButtonBuy_clicked()
             emit tavara_ostettu();
         }
         else{
-            //ui->infoRuutu->clear();
-            //ui->infoRuutu->setText("Myy ensin vanha aseesi!");
+            ui->infoRuutu->clear();
+            ui->infoRuutu->setText("Myy ensin vanha aseesi!");
         }
     }
     else if( ui->treeWidget->currentItem()->parent()->text(0) == "Panssarit"){
@@ -93,8 +93,8 @@ void shopscene::on_ButtonBuy_clicked()
             emit tavara_ostettu();
         }
         else{
-            //ui->infoRuutu->clear();
-            //ui->infoRuutu->setText("Myy ensin vanha panssarisi!");
+            ui->infoRuutu->clear();
+            ui->infoRuutu->setText("Myy ensin vanha panssarisi!");
         }
     }
 
