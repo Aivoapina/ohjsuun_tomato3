@@ -9,5 +9,10 @@
         <file>assets/tavaroiden_alustus.txt</file>
         <file>assets/grass_texture.png</file>
         <file>assets/bull_ingame.png</file>
+        <file>assets/brick_texture.png</file>
+        <file>assets/teekkari.png</file>
+        <file>assets/water_texture.png</file>
+        <file>assets/siili.png</file>
+        <file>assets/humanisti.png</file>
     </qresource>
 </RCC>
