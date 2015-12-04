@@ -65,14 +65,17 @@ void shopscene::refresh_plebs()
 void shopscene::on_ButtonBuy_clicked()
 {
     if (!ui->treeWidget->currentItem() or ui->treeWidget->currentItem()->data(4,2).toString() == ""){
+        ui->infoRuutu->setText("Valitse hahmosi painamalla hahmon ruutua!");
         return;
     }
     qDebug() << ui->treeWidget->currentItem()->data(4,2).toString();
     if (!myteam_->return_selected()){
+        ui->infoRuutu->setText("Sinulla ei ole valittuja hahmoja.");
         return;
     }
     if (ui->treeWidget->currentItem()->data(4,2).toString().split(";").at(1).toInt()
             >= myteam_->get_raha()){
+        ui->infoRuutu->setText("Sinulla ei ole tarpeeksi rahaa tätä ostosta varten.");
         return;
     }
     if( ui->treeWidget->currentItem()->parent()->text(0) == "Aseet" ){
