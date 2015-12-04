@@ -73,6 +73,11 @@ void ArenaMember::lisaa_power()
     stats_.power++;
 }
 
+void ArenaMember::lisaa_nopeus()
+{
+    stats_.nopeus++;
+}
+
 void ArenaMember::osta_ase(QString d)
 {
     if ( d == "myyty" ){

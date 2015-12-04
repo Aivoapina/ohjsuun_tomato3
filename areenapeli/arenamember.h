@@ -28,6 +28,7 @@ public:
 
     void lisaa_maxhp();
     void lisaa_power();
+    void lisaa_nopeus();
 
     void osta_ase(QString d);
     void osta_armor(QString d);

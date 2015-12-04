@@ -98,7 +98,7 @@ void MainWindow::on_lintulaButton_clicked()
     for(auto i: ui->keskiWidget->children()){
         delete i;
     }
-    lintulaWindow *w = new lintulaWindow(ui->keskiWidget);
+    lintulaWindow *w = new lintulaWindow(myteam_, ui->keskiWidget);
     connect(w, SIGNAL(lisaa_hp()), this, SLOT(hp_ostettu()));
     connect(w, SIGNAL(lisaa_power()), this, SLOT(power_ostettu()));
     w->show();
