@@ -2,6 +2,7 @@ TARGET = abstractitemmodel
 TEMPLATE = app
 
 QT += qml quick widgets quickwidgets
+
 CONFIG += c++11
 
 SOURCES += main.cpp \
