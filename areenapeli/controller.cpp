@@ -9,31 +9,39 @@ Controller::Controller(ArenaTeam *own_team, ArenaTeam *enemy_team)
 
 std::shared_ptr<ArenaMember> Controller::startFight()
 {
-    players_turn = true;
-    return own_team_->getPlebs().at(0);
+    active_team_ = own_team_;
+    return active_team_->getPlebs().at(0);
 
 }
 
 bool Controller::canMemberMove(std::shared_ptr<ArenaMember> pleb)
 {
-    if (players_turn){
-        if ( own_team_->getPlebs().contains(pleb) and !moved_plebs.contains(pleb) ){
-            moved_plebs.push_back(pleb);
-            return true;
-        }
-    } else {
-        if ( enemy_team_->getPlebs().contains(pleb) and !moved_plebs.contains(pleb) ){
-            moved_plebs.push_back(pleb);
-            return true;
-        }
+    if ( active_team_->getPlebs().contains(pleb) and !moved_plebs.contains(pleb)  ){
+        moved_plebs.push_back(pleb);
+        return true;
     }
     return false;
 }
 
-void Controller::endTurn()
+std::shared_ptr<ArenaMember> Controller::endTurn()
 {
-    players_turn = !players_turn;
+    if (active_team_ == own_team_){
+        active_team_ = enemy_team_;
+    } else {
+        active_team_ = own_team_;
+    }
     moved_plebs.clear();
+    return active_team_->getPlebs().at(0);
+}
+
+std::shared_ptr<ArenaMember> Controller::findUnmovedMember()
+{
+    for (auto mem : active_team_->getPlebs() ){
+        if ( !moved_plebs.contains(mem) ){
+            return mem;
+        }
+    }
+    return nullptr;
 }
 
 

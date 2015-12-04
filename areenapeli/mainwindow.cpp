@@ -171,7 +171,8 @@ void MainWindow::pleb4_selected()
 
 void MainWindow::on_startGame_clicked()
 {
-    FightingScene *window = new FightingScene(myteam_, myteam_, ui->keskiWidget);
+    FightingScene *window = new FightingScene(myteam_, myteam_, 0);
+    hide();
     window->show();
 }
 

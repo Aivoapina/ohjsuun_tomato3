@@ -14,18 +14,19 @@ Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team)
     QString location = "assets/grass_texture.png";
     int j = 0;
     for(int i = 0; i < 160; i++){
-        if ( i > 2 and i < 7 ){
+        if( i == 7 ){
+            j = 0;
+        }
+        else if ( i > 2 and i < 7 ){
             if ( j < enemy_team->getPlebs().size() ){
-                map.append( Tile( enemy_team->getPlebs().at(j), location, true ) );
+                map.push_back( Tile( enemy_team->getPlebs().at(j), location, true ) );
                 j++;
                 continue;
-            } else if( i == 6 ){
-                j = 0;
             }
         }
-        if ( i > 152 and i < 157 ){
+        else if ( i > 152 and i < 157 ){
             if ( j < own_team->getPlebs().size() ){
-                map.append( Tile( own_team->getPlebs().at(j), location, true ) );
+                map.push_back( Tile( own_team->getPlebs().at(j), location, true ) );
                 j++;
                 continue;
             }
@@ -42,10 +43,13 @@ Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team)
 
 bool Map::findPleb(std::shared_ptr<ArenaMember> pleb)
 {
+    if (pleb == nullptr){
+        return false;
+    }
     for (int i = 0; i < map.count(); i++ ){
         if ( map.at(i).getHero() == pleb ){
             m_index = i;
-            indexChanged(m_index);
+            emit m_indexChanged(i);
             return true;
         }
     }
@@ -55,35 +59,49 @@ bool Map::findPleb(std::shared_ptr<ArenaMember> pleb)
 void Map::liikuJohonkin(const QString &direction, const int &index)
 {
     layoutAboutToBeChanged();
-    if ( !control->canMemberMove( map.at(index).getHero() ) ){
+    if ( control->canMemberMove( map.at(index).getHero() ) ){
+        if (direction == "right"){
+            if (index % 10 == 9 or map.at(index+1).isSolid() ){
+                qDebug() << "Can't move there";
+                return;
+            }
+            map.swap(index, index+1);
+        } else if(direction == "left" ){
+            if (index % 10 == 0 or map.at(index-1).isSolid()){
+                qDebug() << "Can't move there";
+                return;
+            }
+            map.swap(index, index-1);
+        } else if(direction == "up" ){
+            if (index < 10 or map.at(index-10).isSolid()){
+                qDebug() << "Can't move there";
+                return;
+            }
+            map.swap(index, index-10);
+        } else if(direction == "down" ){
+            if (index > 149 or map.at(index+10).isSolid()){
+                qDebug() << "Can't move there";
+                return;
+            }
+            map.swap(index, index+10);
+        }
+    } else {
         return;
     }
-    if (direction == "right"){
-        if (index % 10 == 9 or map.at(index+1).isSolid() ){
-            qDebug() << "Can't move there";
-            return;
-        }
-        map.swap(index, index+1);
-    } else if(direction == "left" ){
-        if (index % 10 == 0 or map.at(index-1).isSolid()){
-            qDebug() << "Can't move there";
-            return;
-        }
-        map.swap(index, index-1);
-    } else if(direction == "up" ){
-        if (index < 10 or map.at(index-10).isSolid()){
-            qDebug() << "Can't move there";
-            return;
-        }
-        map.swap(index, index-10);
-    } else if(direction == "down" ){
-        if (index > 149 or map.at(index+10).isSolid()){
-            qDebug() << "Can't move there";
-            return;
-        }
-        map.swap(index, index+10);
-    }
     layoutChanged();
+}
+
+int Map::getM_index()
+{
+    if ( findPleb(control->findUnmovedMember() ) ){
+        return m_index;
+    }
+    return -1;
+}
+
+void Map::setM_index(int new_index)
+{
+    m_index = new_index;
 }
 /*
 QHash<int, QByteArray> Map::roleNames() const

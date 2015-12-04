@@ -9,12 +9,13 @@ public:
     Controller(ArenaTeam *own_team, ArenaTeam *enemy_team);
     std::shared_ptr<ArenaMember> startFight();
     bool canMemberMove(std::shared_ptr<ArenaMember> pleb);
-    void endTurn();
+    std::shared_ptr<ArenaMember> endTurn();
+    std::shared_ptr<ArenaMember> findUnmovedMember();
 
 private:
     ArenaTeam *own_team_;
     ArenaTeam *enemy_team_;
-    bool players_turn;
+    ArenaTeam *active_team_;
     QList<std::shared_ptr<ArenaMember>> moved_plebs;
 };
 

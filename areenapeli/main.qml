@@ -19,7 +19,6 @@ Rectangle {
                     anchors.fill: parent
                     onClicked: grid.currentIndex = index
 
-
                 }
                 states: [
                     State {
@@ -48,24 +47,24 @@ Rectangle {
         }
         model: myModel
         delegate: square
-        Component.onCompleted: grid.currentIndex = -1
+        Component.onCompleted: grid.currentIndex = myModel.m_index
     }
 
     Keys.onRightPressed: {
         myModel.liikuJohonkin("right", grid.currentIndex)
-        grid.moveCurrentIndexRight()
+        grid.currentIndex = myModel.m_index
     }
     Keys.onLeftPressed: {
         myModel.liikuJohonkin("left", grid.currentIndex)
-        grid.moveCurrentIndexLeft()
+        grid.currentIndex = myModel.m_index
     }
     Keys.onUpPressed: {
         myModel.liikuJohonkin("up", grid.currentIndex)
-        grid.moveCurrentIndexUp()
+        grid.currentIndex = myModel.m_index
     }
     Keys.onDownPressed: {
         myModel.liikuJohonkin("down", grid.currentIndex)
-        grid.moveCurrentIndexDown()
+        grid.currentIndex = myModel.m_index
     }
     focus: true
 

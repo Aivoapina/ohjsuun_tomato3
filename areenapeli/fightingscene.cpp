@@ -28,5 +28,7 @@ FightingScene::~FightingScene()
 
 void FightingScene::on_endTurn_clicked()
 {
-    control->endTurn();
+    if ( !mapmodel->findPleb( control->endTurn() ) ){
+        qDebug() << "rip";
+    }
 }

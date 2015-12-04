@@ -8,7 +8,7 @@
 class Map : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(int m_index MEMBER m_index NOTIFY indexChanged)
+    Q_PROPERTY(int m_index READ getM_index WRITE setM_index NOTIFY m_indexChanged)
 
 public:
     /*enum MapRoles{
@@ -21,6 +21,9 @@ public:
     bool findPleb(std::shared_ptr<ArenaMember> pleb);
     Q_INVOKABLE void liikuJohonkin(const QString &direction, const int &index);
     //QHash<int, QByteArray> roleNames() const;
+    int getM_index();
+    void setM_index(int new_index);
+
     int rowCount(const QModelIndex &/*parent*/) const;
     QVariant data(const QModelIndex &index, int role) const;
 
@@ -28,7 +31,7 @@ public slots:
     //void moveKappa(const QString &direction, const int &index);
 
 signals:
-    void indexChanged(int new_index);
+    void m_indexChanged(int new_index);
 
 private:
     QList<Tile> map;
