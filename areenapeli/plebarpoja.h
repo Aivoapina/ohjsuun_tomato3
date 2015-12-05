@@ -27,6 +27,8 @@ public:
 
     std::shared_ptr<ArenaMember> arvoPleb();
 
+    std::shared_ptr<ArenaMember> arvoAIPleb(int taso);
+
 private:
     void lue_alustus();
 

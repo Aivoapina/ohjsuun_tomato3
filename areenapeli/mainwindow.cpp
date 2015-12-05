@@ -174,7 +174,8 @@ void MainWindow::pleb4_selected()
 
 void MainWindow::on_startGame_clicked()
 {
-    FightingScene *window = new FightingScene(myteam_, myteam_, 0);
+    ArenaTeam *AIteam = new ArenaTeam(0);
+    FightingScene *window = new FightingScene(myteam_, AIteam, 0);
     hide();
     window->show();
 }

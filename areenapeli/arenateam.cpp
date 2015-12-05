@@ -9,6 +9,17 @@ ArenaTeam::ArenaTeam(QObject *parent)
     selected = nullptr;
 }
 
+ArenaTeam::ArenaTeam(int AItaso, QObject *parent)
+    :QObject(parent)
+{
+    arpoja = new plebArpoja();
+    gold = 99999999; //purkka ":D"
+    buyNewMember(arpoja->arvoAIPleb(0));
+    buyNewMember(arpoja->arvoAIPleb(0));
+    buyNewMember(arpoja->arvoAIPleb(0));
+    buyNewMember(arpoja->arvoAIPleb(0));
+}
+
 
 
 void ArenaTeam::buyNewMember(std::shared_ptr<ArenaMember> newpleb)
