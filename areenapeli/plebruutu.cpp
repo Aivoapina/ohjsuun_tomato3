@@ -18,9 +18,7 @@ plebRuutu::plebRuutu(std::shared_ptr<ArenaMember> pleb, QWidget *parent)
 {
     ui->setupUi(this);
     team = nullptr;
-
     pleb_ = pleb;
-    qDebug()<<"asd";
     ui->aseLabel->setFlat(1);
     ui->aseLabel->setDisabled(1);
     ui->panssariLabel->setFlat(1);
