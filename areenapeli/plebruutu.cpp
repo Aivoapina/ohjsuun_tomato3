@@ -10,8 +10,6 @@ plebRuutu::plebRuutu(ArenaTeam* tiimi, std::shared_ptr<ArenaMember> pleb, QWidge
     team = tiimi;
     pleb_ = pleb;
     paivita();
-
-
 }
 
 
@@ -26,7 +24,7 @@ void plebRuutu::paivita()
     QPixmap icon(":assets/" + pleb_->r_rotu()+".png");
     ui->Kuva->setPixmap(icon);
     ui->powerLabel->setText("Power: " + QString::number(pleb_->r_power()));
-    ui->hpLabel->setText("HP: " + QString::number(pleb_->r_current_hp()));
+    ui->hpLabel->setText("HP: " + QString::number(pleb_->r_current_hp()) + "/" + QString::number(pleb_->r_maxhp()));
     ui->armorLabel->setText("Armor:" + QString::number(pleb_->r_armor()));
     ui->rotuLabel->setText("Rotu: " + pleb_->r_rotu());
     ui->nopeusLabel->setText("Nopeus: " + QString::number(pleb_->r_nopeus()));

@@ -104,8 +104,6 @@ void MainWindow::on_lintulaButton_clicked()
         delete i;
     }
     lintulaWindow *w = new lintulaWindow(myteam_, ui->keskiWidget);
-    connect(w, SIGNAL(lisaa_hp()), this, SLOT(hp_ostettu()));
-    connect(w, SIGNAL(lisaa_power()), this, SLOT(power_ostettu()));
     w->show();
 
 }
@@ -176,7 +174,8 @@ void MainWindow::pleb4_selected()
 
 void MainWindow::on_startGame_clicked()
 {
-    FightingScene *window = new FightingScene(myteam_, myteam_, 0);
+    ArenaTeam *AIteam = new ArenaTeam(0);
+    FightingScene *window = new FightingScene(myteam_, AIteam, 0);
     hide();
     window->show();
 }

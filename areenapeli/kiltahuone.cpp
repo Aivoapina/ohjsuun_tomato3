@@ -38,9 +38,9 @@ void kiltahuone::on_osta_clicked()
             tiimi_->buyNewMember(selection_);
             //ui->rahamaara->setText(QString::number(tiimi_->get_raha()));
             model_->removeRow(ui->listView->currentIndex().row());
-            for(auto i: ui->selectionWidget->children()){
+           /* for(auto i: ui->selectionWidget->children()){
                 delete i;
-            }
+            }*/
             if(model_->rowCount() != 0){
                 std::shared_ptr<ArenaMember> selection(new ArenaMember(ui->listView->selectionModel()->currentIndex().data(Qt::UserRole +1 ).toStringList()));
                 selection_ = selection;
@@ -58,6 +58,12 @@ void kiltahuone::on_osta_clicked()
 
 void kiltahuone::view_clicked()
 {
+    if(model_->rowCount() == 1 ){
+        for(auto i: ui->selectionWidget->children()){
+            delete i;
+        }
+        return;
+    }
     std::shared_ptr<ArenaMember> selection(new ArenaMember(ui->listView->selectionModel()->currentIndex().data(Qt::UserRole +1 ).toStringList()));
     selection_ = selection;
     for(auto i: ui->selectionWidget->children()){

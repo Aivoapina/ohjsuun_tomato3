@@ -6,6 +6,7 @@
 #include <QList>
 #include <QObject>
 #include "arenamember.h"
+#include "plebarpoja.h"
 
 
 class ArenaTeam: public QObject
@@ -13,6 +14,9 @@ class ArenaTeam: public QObject
     Q_OBJECT
 public:
     explicit ArenaTeam(QObject *parent= 0);
+
+    ArenaTeam(int AItaso, QObject *parent = 0);
+
     QList<std::shared_ptr<ArenaMember>> getPlebs();
     void buyNewMember(std::shared_ptr<ArenaMember> newpleb);
     std::shared_ptr<ArenaMember> return_selected();
@@ -29,6 +33,7 @@ private:
     uint gold;
     QString name;
     std::shared_ptr<ArenaMember> selected;
+    plebArpoja *arpoja;
 
 };
 
