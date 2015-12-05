@@ -16,15 +16,21 @@ std::shared_ptr<ArenaMember> Controller::startFight()
 
 bool Controller::canMemberMove(std::shared_ptr<ArenaMember> pleb)
 {
-    if ( active_team_->getPlebs().contains(pleb) and !moved_plebs.contains(pleb)  ){
-        return true;
+    if ( active_team_->getPlebs().contains(pleb)){
+        if (!moved_plebs.contains(pleb) or moved_plebs[pleb] < 2  ){
+            return true;
+        }
     }
     return false;
 }
 
 void Controller::memberMoved(std::shared_ptr<ArenaMember> pleb)
 {
-    moved_plebs.push_back(pleb);
+    if (moved_plebs.contains(pleb)){
+        moved_plebs[pleb] += 1;
+    } else {
+        moved_plebs.insert(pleb, 1);
+    }
 }
 
 std::shared_ptr<ArenaMember> Controller::endTurn()
@@ -41,7 +47,7 @@ std::shared_ptr<ArenaMember> Controller::endTurn()
 std::shared_ptr<ArenaMember> Controller::findUnmovedMember()
 {
     for (auto mem : active_team_->getPlebs() ){
-        if ( !moved_plebs.contains(mem) ){
+        if ( !moved_plebs.contains(mem) or moved_plebs[mem] < 2 ){
             return mem;
         }
     }

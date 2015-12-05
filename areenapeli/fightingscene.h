@@ -5,6 +5,7 @@
 #include <QtQuickWidgets/QQuickWidget>
 #include "map.h"
 #include "arenateam.h"
+#include <QStringListModel>
 
 namespace Ui {
 class FightingScene;
@@ -20,12 +21,14 @@ public:
     bool initScene(Map* mapmodel);
 
 public slots:
-
+    void updateLog(QString dir, std::shared_ptr<ArenaMember> pleb);
 
 private slots:
 
 private:
     Ui::FightingScene *ui;
+    QStringListModel* logModel;
+    QStringList log;
     Controller* control;
     Map* mapmodel;
 };

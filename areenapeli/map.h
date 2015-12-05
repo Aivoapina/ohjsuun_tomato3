@@ -33,10 +33,12 @@ public slots:
 
 signals:
     void m_indexChanged(int new_index);
+    void memberMoved(QString dir, std::shared_ptr<ArenaMember> pleb);
 
 private:
     QList<Tile> map;
     Controller * control;
+    QMap<QString, QString> dic;
     int m_index;
 
 };

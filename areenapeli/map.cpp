@@ -6,7 +6,10 @@
 
 Map::Map(QObject *parent) : QAbstractListModel(parent)
 {
-
+    dic.insert("right", "itään"); dic.insert("left", "länteen");
+    dic.insert("up", "pohjoiseen"); dic.insert("down", "etelään");
+    dic.insert("upright", "koiliseen"); dic.insert("upleft", "luoteeseen");
+    dic.insert("downright", "kaakkoon"); dic.insert("downleft", "lounaaseen");
 }
 
 Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team)
@@ -58,6 +61,9 @@ bool Map::findPleb(std::shared_ptr<ArenaMember> pleb)
 void Map::liikuJohonkin(const QString &direction, const int &index)
 {
     layoutAboutToBeChanged();
+    if (index == -1){
+        return;
+    }
     std::shared_ptr<ArenaMember> mem = map.at(index).getHero();
     if ( control->canMemberMove( mem ) ){
         if (direction == "right"){
@@ -113,6 +119,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
         return;
     }
     control->memberMoved( mem );
+    emit memberMoved(dic[direction], mem);
     layoutChanged();
 }
 
