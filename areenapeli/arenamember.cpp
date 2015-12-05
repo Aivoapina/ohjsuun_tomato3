@@ -94,26 +94,30 @@ void ArenaMember::osta_armor(QString d)
     }
 }
 
-QStringList ArenaMember::laske_osuma(int saapuva)
+QString ArenaMember::laske_osuma(std::shared_ptr<ArenaMember> hyokkaaja)
 {
-    QStringList osuma_selitys;
-
+    QString kuvaus;
     if ( randInt(0,100) < r_nopeus() ){
-        osuma_selitys.push_back("0");
-        osuma_selitys.push_back(r_nimi()+ " väisti iskun, eikä täten ota osumaa");
-        return osuma_selitys;
+        kuvaus = r_nimi()+ " väisti iskun, eikä täten ota osumaa";
+        return kuvaus;
     }
+
+    int saapuva{0};
+    QStringList asedata = hyokkaaja->r_ase()->r_damout().split('d');
+    for( int i = 0; i < asedata[0].toInt(); i++){
+        saapuva = saapuva + randInt(1,asedata[1].toInt());
+    }
+    saapuva = saapuva + hyokkaaja->r_power();
+
 
     if( saapuva <= r_armor() ){
-        osuma_selitys.push_back("0");
-        osuma_selitys.push_back(r_nimi()+ "n panssari torjui kaiken osuman");
-        return osuma_selitys;
+        kuvaus = r_nimi()+ "n panssari torjui kaiken osuman";
+        return kuvaus;
     }
-    osuma_selitys.push_back(QString::number(saapuva - r_armor()));
     current_hp = current_hp - ( saapuva- r_armor() );
     qDebug() << current_hp;
-    osuma_selitys.push_back(r_nimi()+ ": Otti " + QString::number(saapuva - r_armor())+ " damagea. Panssari torjui " + QString::number(r_armor()) +" vahinkoa." );
-    return osuma_selitys;
+    kuvaus = hyokkaaja->r_nimi() + " iski voimalla " + QString::number(saapuva) + ". " + r_nimi()+ ": Otti " + QString::number(saapuva - r_armor())+ " damagea. Panssari torjui " + QString::number(r_armor()) +" vahinkoa.";
+    return kuvaus;
 }
 
 QString ArenaMember::r_rotu() const

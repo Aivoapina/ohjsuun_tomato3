@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <QObject>
 #include <QMetaType>
+#include <memory>
 
 #include "shop.h"
 
@@ -34,7 +35,7 @@ public:
     void osta_armor(QString d);
 
     //0 indeksistä löytyy otettu osuma ja 1 indeksistä kuvaus tapahtuneesta
-    QStringList laske_osuma(int saapuva);
+    QString laske_osuma(std::shared_ptr<ArenaMember> hyokkaaja);
 
 
     QString r_rotu() const;

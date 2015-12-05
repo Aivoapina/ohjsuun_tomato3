@@ -15,5 +15,9 @@
         <file>assets/siili.png</file>
         <file>assets/humanisti.png</file>
         <file>assets/arrow.png</file>
+        <file>assets/ihminen_ingame.png</file>
+        <file>assets/karhujaba_ingame.png</file>
+        <file>assets/mahtikani_ingame.png</file>
+        <file>assets/kettutydy_ingame.png</file>
     </qresource>
 </RCC>
