@@ -12,6 +12,7 @@ public:
     void memberMoved(std::shared_ptr<ArenaMember> pleb);
     std::shared_ptr<ArenaMember> endTurn();
     std::shared_ptr<ArenaMember> findUnmovedMember();
+    QString hitMember(std::shared_ptr<ArenaMember> attacker, std::shared_ptr<ArenaMember> target);
 
 private:
     ArenaTeam *own_team_;

@@ -21,7 +21,8 @@ public:
     bool initScene(Map* mapmodel);
 
 public slots:
-    void updateLog(QString dir, std::shared_ptr<ArenaMember> pleb);
+    void updateLog(QString msg);
+    void updateMemberScreen(std::shared_ptr<ArenaMember> pleb);
 
 private slots:
 

@@ -54,4 +54,17 @@ std::shared_ptr<ArenaMember> Controller::findUnmovedMember()
     return nullptr;
 }
 
+QString Controller::hitMember(std::shared_ptr<ArenaMember> attacker, std::shared_ptr<ArenaMember> target)
+{
+    if (active_team_->getPlebs().contains(target)){
+        return "Et voi lyödä omaa pelaajaa";
+    }
+    if (moved_plebs.contains(attacker)){
+        moved_plebs[attacker] += 2;
+    } else {
+        moved_plebs.insert(attacker, 2);
+    }
+    return target->laske_osuma(10).at(1);
+}
+
 

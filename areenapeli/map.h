@@ -21,6 +21,7 @@ public:
     bool findPleb(std::shared_ptr<ArenaMember> pleb);
     Q_INVOKABLE void liikuJohonkin(const QString &direction, const int &index);
     Q_INVOKABLE void endTurn();
+    Q_INVOKABLE void playerChangedIndex(int index);
     //QHash<int, QByteArray> roleNames() const;
     int getM_index();
     void setM_index(int new_index);
@@ -33,7 +34,8 @@ public slots:
 
 signals:
     void m_indexChanged(int new_index);
-    void memberMoved(QString dir, std::shared_ptr<ArenaMember> pleb);
+    void somethingHappened(QString msg);
+    void updateActiveMember(std::shared_ptr<ArenaMember> pleb);
 
 private:
     QList<Tile> map;

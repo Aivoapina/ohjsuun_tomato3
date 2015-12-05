@@ -16,7 +16,7 @@ QString Tile::givePicture() const
 QString Tile::getHeroPic() const
 {
     if (hero == nullptr){
-        return "";
+        return "assets/transparent.png";
     }
     return "assets/bull_ingame.png";
 }

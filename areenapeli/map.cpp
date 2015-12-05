@@ -22,14 +22,14 @@ Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team)
         }
         else if ( i > 2 and i < 7 ){
             if ( j < enemy_team->getPlebs().size() ){
-                map.push_back( Tile( enemy_team->getPlebs().at(j), location, true ) );
+                map.push_back( Tile( enemy_team->getPlebs().at(j), location, false ) );
                 j++;
                 continue;
             }
         }
         else if ( i > 152 and i < 157 ){
             if ( j < own_team->getPlebs().size() ){
-                map.push_back( Tile( own_team->getPlebs().at(j), location, true ) );
+                map.push_back( Tile( own_team->getPlebs().at(j), location, false ) );
                 j++;
                 continue;
             }
@@ -66,9 +66,13 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
     }
     std::shared_ptr<ArenaMember> mem = map.at(index).getHero();
     if ( control->canMemberMove( mem ) ){
-        if (direction == "right"){
-            if (index % 10 == 9 or map.at(index+1).isSolid() ){
+        if (direction == "right" ){
+            if (index % 10 == 9 or map.at(index+1).isSolid()){
                 qDebug() << "Can't move there";
+                return;
+            } else if (map.at(index+1).getHero() != nullptr ){
+                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index+1).getHero()) );
+                emit updateActiveMember(mem);
                 return;
             }
             map.swap(index, index+1);
@@ -76,11 +80,19 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
             if (index % 10 == 0 or map.at(index-1).isSolid()){
                 qDebug() << "Can't move there";
                 return;
+            } else if (map.at(index-1).getHero() != nullptr ){
+                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index-1).getHero()));
+                emit updateActiveMember(mem);
+                return;
             }
             map.swap(index, index-1);
         } else if(direction == "up" ){
             if (index < 10 or map.at(index-10).isSolid()){
                 qDebug() << "Can't move there";
+                return;
+            } else if (map.at(index-10).getHero() != nullptr ){
+                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index-10).getHero()) );
+                emit updateActiveMember(mem);
                 return;
             }
             map.swap(index, index-10);
@@ -88,11 +100,19 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
             if (index > 149 or map.at(index+10).isSolid()){
                 qDebug() << "Can't move there";
                 return;
+            } else if (map.at(index+10).getHero() != nullptr ){
+                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index+10).getHero()));
+                emit updateActiveMember(mem);
+                return;
             }
             map.swap(index, index+10);
         } else if(direction == "upleft") {
             if (index % 10 == 0 or index < 10 or map.at(index-11).isSolid() ){
                 qDebug() << "Can't move there";
+                return;
+            } else if (map.at(index-11).getHero() != nullptr ){
+                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index-11).getHero()));
+                emit updateActiveMember(mem);
                 return;
             }
             map.swap(index, index-11);
@@ -100,11 +120,19 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
             if (index % 10 == 9 or index < 10 or map.at(index-9).isSolid() ){
                 qDebug() << "Can't move there";
                 return;
+            } else if (map.at(index-9).getHero() != nullptr ){
+                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index-9).getHero()));
+                emit updateActiveMember(mem);
+                return;
             }
             map.swap(index, index-9);
         } else if(direction == "downright"){
             if (index % 10 == 9 or index > 149 or map.at(index+11).isSolid() ){
                 qDebug() << "Can't move there";
+                return;
+            } else if (map.at(index+11).getHero() != nullptr ){
+                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index+11).getHero()));
+                emit updateActiveMember(mem);
                 return;
             }
             map.swap(index, index+11);
@@ -112,14 +140,24 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
             if (index % 10 == 0 or index > 149 or map.at(index+9).isSolid() ){
                 qDebug() << "Can't move there";
                 return;
+            } else if (map.at(index+9).getHero() != nullptr ){
+                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index+9).getHero()));
+                emit updateActiveMember(mem);
+                return;
             }
             map.swap(index, index+9);
+        } else if(direction == "skip"){
+            control->memberMoved( mem );
+            emit updateActiveMember(mem);
+            emit somethingHappened( QString(mem->r_nimi() + " skippasi vuoronsa.") );
+            return;
         }
     } else {
         return;
     }
     control->memberMoved( mem );
-    emit memberMoved(dic[direction], mem);
+    emit somethingHappened( QString(mem->r_nimi() + " liikkui suuntaan " + dic[direction] + "."));
+    emit updateActiveMember(mem);
     layoutChanged();
 }
 
@@ -130,11 +168,19 @@ void Map::endTurn()
     }
 }
 
+void Map::playerChangedIndex(int index)
+{
+    m_index = index;
+    emit updateActiveMember( map.at(index).getHero() );
+}
+
 int Map::getM_index()
 {
     if ( findPleb(control->findUnmovedMember() ) ){
+        emit updateActiveMember(map.at(m_index).getHero());
         return m_index;
     }
+    emit updateActiveMember(nullptr);
     return -1;
 }
 

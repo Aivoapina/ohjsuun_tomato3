@@ -21,6 +21,7 @@ Rectangle {
                     anchors.fill: parent
                     onClicked: {
                         grid.currentIndex = index
+                        myModel.playerChangedIndex(index)
                     }
                 }
                 states: [

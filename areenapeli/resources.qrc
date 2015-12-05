@@ -15,5 +15,6 @@
         <file>assets/siili.png</file>
         <file>assets/humanisti.png</file>
         <file>assets/arrow.png</file>
+        <file>assets/transparent.png</file>
     </qresource>
 </RCC>
