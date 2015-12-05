@@ -12,6 +12,22 @@ plebRuutu::plebRuutu(ArenaTeam* tiimi, std::shared_ptr<ArenaMember> pleb, QWidge
     paivita();
 }
 
+plebRuutu::plebRuutu(std::shared_ptr<ArenaMember> pleb, QWidget *parent)
+    :QWidget(parent),
+      ui(new Ui::plebRuutu)
+{
+    ui->setupUi(this);
+    team = nullptr;
+
+    pleb_ = pleb;
+    qDebug()<<"asd";
+    ui->aseLabel->setFlat(1);
+    ui->aseLabel->setDisabled(1);
+    ui->panssariLabel->setFlat(1);
+    ui->panssariLabel->setDisabled(1);
+    paivita();
+}
+
 
 plebRuutu::~plebRuutu()
 {

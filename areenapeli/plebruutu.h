@@ -20,6 +20,7 @@ class plebRuutu : public QWidget
 
 public:
     explicit plebRuutu(ArenaTeam *team, std::shared_ptr<ArenaMember> pleb, QWidget *parent = 0);
+    plebRuutu(std::shared_ptr<ArenaMember> pleb, QWidget * parent = 0);
     ~plebRuutu();
 
     void paivita();

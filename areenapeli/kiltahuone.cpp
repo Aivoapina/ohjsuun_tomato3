@@ -69,6 +69,6 @@ void kiltahuone::view_clicked()
     for(auto i: ui->selectionWidget->children()){
         delete i;
     }
-    plebRuutu *w = new plebRuutu(tiimi_, selection_, ui->selectionWidget);
+    plebRuutu *w = new plebRuutu(selection_, ui->selectionWidget);
     w->show();
 }
