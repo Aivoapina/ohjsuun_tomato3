@@ -1,5 +1,5 @@
 #include "kiltamodel.h"
-
+#include <QDebug>
 int randInteger(int low, int high)
 {
     return qrand() % ((high + 1) - low) + low;

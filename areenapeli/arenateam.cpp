@@ -13,7 +13,6 @@ ArenaTeam::ArenaTeam(QObject *parent)
 
 void ArenaTeam::buyNewMember(std::shared_ptr<ArenaMember> newpleb)
 {
-    qDebug() << newpleb.get()->r_hinta();
     gold = gold-newpleb.get()->r_hinta();
     members.push_back(newpleb);
 }
