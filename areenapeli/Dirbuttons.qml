@@ -134,4 +134,24 @@ Rectangle {
             grid.currentIndex = myModel.m_index
         }
     }
+    Button {
+        id: skip
+        x: 75; y: 75
+        width: 50; height: 50
+        style: ButtonStyle {
+            background: Rectangle {
+                anchors.fill: parent
+                color: "red"
+                Text {
+                    anchors.centerIn: parent
+                    font.pointSize: 16
+                    text: "Skip"
+                }
+            }
+        }
+        onClicked: {
+            myModel.liikuJohonkin("skip", grid.currentIndex)
+            grid.currentIndex = myModel.m_index
+        }
+    }
 }

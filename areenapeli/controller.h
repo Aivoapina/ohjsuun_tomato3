@@ -17,7 +17,7 @@ private:
     ArenaTeam *own_team_;
     ArenaTeam *enemy_team_;
     ArenaTeam *active_team_;
-    QList<std::shared_ptr<ArenaMember>> moved_plebs;
+    QMap<std::shared_ptr<ArenaMember>, int> moved_plebs;
 };
 
 #endif // CONTROLLER_H

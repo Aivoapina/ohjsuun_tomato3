@@ -13,10 +13,17 @@ FightingScene::FightingScene(ArenaTeam* my_team, ArenaTeam* enemy_team, QWidget 
 {
     ui->setupUi(this);
 
+    logModel = new QStringListModel(this);
+    logModel->setStringList(log);
+    ui->logList->setModel(logModel);
+    ui->logList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     mapmodel = new Map();
+    connect(mapmodel, SIGNAL(memberMoved(QString, std::shared_ptr<ArenaMember>)) ,this, SLOT(updateLog(QString,std::shared_ptr<ArenaMember>)));
     control = mapmodel->startFight(my_team, enemy_team);
     ui->qmlView->rootContext()->setContextProperty("myModel", mapmodel);
     ui->qmlView->setSource(QUrl("qrc:/main.qml"));
+
 
 
 }
@@ -24,4 +31,11 @@ FightingScene::FightingScene(ArenaTeam* my_team, ArenaTeam* enemy_team, QWidget 
 FightingScene::~FightingScene()
 {
     delete ui;
+}
+
+void FightingScene::updateLog(QString dir, std::shared_ptr<ArenaMember> pleb)
+{
+    log.push_front( pleb->r_nimi() + " liikkui " + dir);
+    logModel->setStringList(log);
+
 }
