@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>tilecomponent.qml</file>
+        <file>Dirbuttons.qml</file>
     </qresource>
 </RCC>

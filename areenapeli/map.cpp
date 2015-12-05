@@ -48,8 +48,7 @@ bool Map::findPleb(std::shared_ptr<ArenaMember> pleb)
     }
     for (int i = 0; i < map.count(); i++ ){
         if ( map.at(i).getHero() == pleb ){
-            m_index = i;
-            emit m_indexChanged(i);
+            setM_index(i);
             return true;
         }
     }
@@ -59,7 +58,8 @@ bool Map::findPleb(std::shared_ptr<ArenaMember> pleb)
 void Map::liikuJohonkin(const QString &direction, const int &index)
 {
     layoutAboutToBeChanged();
-    if ( control->canMemberMove( map.at(index).getHero() ) ){
+    std::shared_ptr<ArenaMember> mem = map.at(index).getHero();
+    if ( control->canMemberMove( mem ) ){
         if (direction == "right"){
             if (index % 10 == 9 or map.at(index+1).isSolid() ){
                 qDebug() << "Can't move there";
@@ -84,11 +84,43 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
                 return;
             }
             map.swap(index, index+10);
+        } else if(direction == "upleft") {
+            if (index % 10 == 0 or index < 10 or map.at(index-11).isSolid() ){
+                qDebug() << "Can't move there";
+                return;
+            }
+            map.swap(index, index-11);
+        } else if(direction == "upright"){
+            if (index % 10 == 9 or index < 10 or map.at(index-9).isSolid() ){
+                qDebug() << "Can't move there";
+                return;
+            }
+            map.swap(index, index-9);
+        } else if(direction == "downright"){
+            if (index % 10 == 9 or index > 149 or map.at(index+11).isSolid() ){
+                qDebug() << "Can't move there";
+                return;
+            }
+            map.swap(index, index+11);
+        } else if(direction == "downleft"){
+            if (index % 10 == 0 or index > 149 or map.at(index+9).isSolid() ){
+                qDebug() << "Can't move there";
+                return;
+            }
+            map.swap(index, index+9);
         }
     } else {
         return;
     }
+    control->memberMoved( mem );
     layoutChanged();
+}
+
+void Map::endTurn()
+{
+    if ( !findPleb( control->endTurn() ) ){
+        qDebug() << "rip";
+    }
 }
 
 int Map::getM_index()
@@ -102,6 +134,7 @@ int Map::getM_index()
 void Map::setM_index(int new_index)
 {
     m_index = new_index;
+    emit m_indexChanged(new_index);
 }
 /*
 QHash<int, QByteArray> Map::roleNames() const

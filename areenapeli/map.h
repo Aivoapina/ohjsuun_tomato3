@@ -20,6 +20,7 @@ public:
     Controller* startFight(ArenaTeam *own_team, ArenaTeam *enemy_team);
     bool findPleb(std::shared_ptr<ArenaMember> pleb);
     Q_INVOKABLE void liikuJohonkin(const QString &direction, const int &index);
+    Q_INVOKABLE void endTurn();
     //QHash<int, QByteArray> roleNames() const;
     int getM_index();
     void setM_index(int new_index);

@@ -17,10 +17,14 @@ std::shared_ptr<ArenaMember> Controller::startFight()
 bool Controller::canMemberMove(std::shared_ptr<ArenaMember> pleb)
 {
     if ( active_team_->getPlebs().contains(pleb) and !moved_plebs.contains(pleb)  ){
-        moved_plebs.push_back(pleb);
         return true;
     }
     return false;
+}
+
+void Controller::memberMoved(std::shared_ptr<ArenaMember> pleb)
+{
+    moved_plebs.push_back(pleb);
 }
 
 std::shared_ptr<ArenaMember> Controller::endTurn()

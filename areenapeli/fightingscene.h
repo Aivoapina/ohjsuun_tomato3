@@ -23,7 +23,6 @@ public slots:
 
 
 private slots:
-    void on_endTurn_clicked();
 
 private:
     Ui::FightingScene *ui;

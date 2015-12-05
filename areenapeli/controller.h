@@ -9,6 +9,7 @@ public:
     Controller(ArenaTeam *own_team, ArenaTeam *enemy_team);
     std::shared_ptr<ArenaMember> startFight();
     bool canMemberMove(std::shared_ptr<ArenaMember> pleb);
+    void memberMoved(std::shared_ptr<ArenaMember> pleb);
     std::shared_ptr<ArenaMember> endTurn();
     std::shared_ptr<ArenaMember> findUnmovedMember();
 

@@ -14,5 +14,6 @@
         <file>assets/water_texture.png</file>
         <file>assets/siili.png</file>
         <file>assets/humanisti.png</file>
+        <file>assets/arrow.png</file>
     </qresource>
 </RCC>

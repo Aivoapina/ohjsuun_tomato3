@@ -25,10 +25,3 @@ FightingScene::~FightingScene()
 {
     delete ui;
 }
-
-void FightingScene::on_endTurn_clicked()
-{
-    if ( !mapmodel->findPleb( control->endTurn() ) ){
-        qDebug() << "rip";
-    }
-}

@@ -1,9 +1,11 @@
 import QtQuick 2.3
+import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 
 Rectangle {
     id: item
     visible: true
-    height: 660; width: 420
+    height: 660; width: 620
     GridView {
         id: grid
         x: 10; y: 10
@@ -17,8 +19,9 @@ Rectangle {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: grid.currentIndex = index
-
+                    onClicked: {
+                        grid.currentIndex = index
+                    }
                 }
                 states: [
                     State {
@@ -49,7 +52,6 @@ Rectangle {
         delegate: square
         Component.onCompleted: grid.currentIndex = myModel.m_index
     }
-
     Keys.onRightPressed: {
         myModel.liikuJohonkin("right", grid.currentIndex)
         grid.currentIndex = myModel.m_index
@@ -66,6 +68,31 @@ Rectangle {
         myModel.liikuJohonkin("down", grid.currentIndex)
         grid.currentIndex = myModel.m_index
     }
+    Button {
+        id: endTurn
+        x: 420; y: 230
+        width: 270
+        text: "Lopeta vuoro"
+        onClicked: {
+            myModel.endTurn()
+            grid.currentIndex = myModel.m_index
+        }
+    }
+    Dirbuttons{
+        x: 460; y: 300
+    }
+
+
+
+    /*Connections {
+        target: myModel
+        onM_indexChanged: {
+            grid.currentIndex = myModel.m_index
+            grid.currentItem.picborder.border.color = "black"
+        }
+
+    }*/
+
     focus: true
 
 }
