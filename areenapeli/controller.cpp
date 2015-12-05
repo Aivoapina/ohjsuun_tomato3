@@ -64,7 +64,7 @@ QString Controller::hitMember(std::shared_ptr<ArenaMember> attacker, std::shared
     } else {
         moved_plebs.insert(attacker, 2);
     }
-    return target->laske_osuma(10).at(1);
+    return target->laske_osuma(attacker);
 }
 
 
