@@ -111,6 +111,7 @@ QStringList ArenaMember::laske_osuma(int saapuva)
     }
     osuma_selitys.push_back(QString::number(saapuva - r_armor()));
     current_hp = current_hp - ( saapuva- r_armor() );
+    qDebug() << current_hp;
     osuma_selitys.push_back(r_nimi()+ ": Otti " + QString::number(saapuva - r_armor())+ " damagea. Panssari torjui " + QString::number(r_armor()) +" vahinkoa." );
     return osuma_selitys;
 }
@@ -128,6 +129,11 @@ QString ArenaMember::r_iconPath() const
 int ArenaMember::r_current_hp() const
 {
     return current_hp;
+}
+
+int ArenaMember::r_maxhp()
+{
+    return stats_.hp;
 }
 
 int ArenaMember::r_power() const

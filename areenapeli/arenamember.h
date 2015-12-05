@@ -41,6 +41,7 @@ public:
     QString r_nimi() const;
 
     int r_current_hp() const;
+    int r_maxhp();
     int r_power() const;
     int r_armor() const;
     int r_liike() const;
