@@ -2,7 +2,6 @@
 #include <QTime>
 #include <QDebug>
 
-QList<QString> MAHD_NIMET{"Pena", "Pertti", "Laarnio", "Keba", "Jämä", "Prime", "PELLE", "Kusimuna", "VitunFuksi", "Kyrpä", "Hirviö", "Jooseppi", "Brotherman", "Bill"};
 
 int randInt(int low, int high)
 {
@@ -13,11 +12,6 @@ int randInt(int low, int high)
 ArenaMember::ArenaMember()
 
 {
-    hinta_ = randInt(100,500);
-    nimi_ = MAHD_NIMET[randInt(0,MAHD_NIMET.size()-1)];
-    stats_.hp = randInt(10,50);
-    stats_.power = randInt(3,15);
-    iconPath_ = "assets/bullmentula_ingame.png";
 }
 
 ArenaMember::ArenaMember(QStringList data)
@@ -25,6 +19,7 @@ ArenaMember::ArenaMember(QStringList data)
     rotu_ = data[0];
     nimi_ = data[1];
     stats_.hp = data[2].toInt();
+    current_hp = stats_.hp;
     stats_.power = data[3].toInt();
     stats_.armor = data[4].toInt();
     stats_.liike = data[5].toInt();
@@ -66,6 +61,7 @@ ArenaMember::~ArenaMember()
 void ArenaMember::lisaa_maxhp()
 {
     stats_.hp++;
+    current_hp = stats_.hp;
 }
 
 void ArenaMember::lisaa_power()
@@ -101,8 +97,21 @@ void ArenaMember::osta_armor(QString d)
 QStringList ArenaMember::laske_osuma(int saapuva)
 {
     QStringList osuma_selitys;
-    osuma_selitys.push_back(QString::number(saapuva));
-    osuma_selitys.push_back(r_nimi()+ ": Otti " + QString::number(saapuva)+ " damagea");
+
+    if ( randInt(0,100) < r_nopeus() ){
+        osuma_selitys.push_back("0");
+        osuma_selitys.push_back(r_nimi()+ " väisti iskun, eikä täten ota osumaa");
+        return osuma_selitys;
+    }
+
+    if( saapuva <= r_armor() ){
+        osuma_selitys.push_back("0");
+        osuma_selitys.push_back(r_nimi()+ "n panssari torjui kaiken osuman");
+        return osuma_selitys;
+    }
+    osuma_selitys.push_back(QString::number(saapuva - r_armor()));
+    current_hp = current_hp - ( saapuva- r_armor() );
+    osuma_selitys.push_back(r_nimi()+ ": Otti " + QString::number(saapuva - r_armor())+ " damagea. Panssari torjui " + QString::number(r_armor()) +" vahinkoa." );
     return osuma_selitys;
 }
 
@@ -118,7 +127,7 @@ QString ArenaMember::r_iconPath() const
 
 int ArenaMember::r_current_hp() const
 {
-    return stats_.hp;
+    return current_hp;
 }
 
 int ArenaMember::r_power() const

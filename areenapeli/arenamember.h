@@ -55,6 +55,7 @@ public:
 
 private:
     stats stats_;
+    int current_hp;
     QString nimi_;
     QString rotu_;
     int hinta_;
