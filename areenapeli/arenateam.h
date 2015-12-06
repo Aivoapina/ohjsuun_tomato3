@@ -25,6 +25,7 @@ public:
     void select(std::shared_ptr<ArenaMember> s);
     int get_raha();
     void lisaa_voitto();
+    void alusta();
     QString r_nimi();
     int r_voitot();
     void lisaa_rahaa(int maara);

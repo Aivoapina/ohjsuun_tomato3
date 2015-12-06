@@ -36,6 +36,7 @@ public:
 
     QString laske_osuma(std::shared_ptr<ArenaMember> hyokkaaja);
 
+    void alusta();
 
     QString r_rotu() const;
     QString r_nimi() const;

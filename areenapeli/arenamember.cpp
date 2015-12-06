@@ -128,6 +128,11 @@ QString ArenaMember::laske_osuma(std::shared_ptr<ArenaMember> hyokkaaja)
     return kuvaus;
 }
 
+void ArenaMember::alusta()
+{
+    current_hp = stats_.hp;
+}
+
 QString ArenaMember::r_rotu() const
 {
     return rotu_;

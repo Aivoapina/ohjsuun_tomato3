@@ -70,6 +70,13 @@ void ArenaTeam::lisaa_voitto()
     voitot++;
 }
 
+void ArenaTeam::alusta()
+{
+    for( std::shared_ptr<ArenaMember> mem : members ){
+        mem->alusta();
+    }
+}
+
 QString ArenaTeam::r_nimi()
 {
     return name;

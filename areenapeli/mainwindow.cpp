@@ -207,6 +207,7 @@ void MainWindow::on_startGame_clicked()
     ArenaTeam *AIteam = new ArenaTeam(0);
     FightingScene *window = new FightingScene(myteam_, AIteam, 0);
     hide();
+    connect(window, SIGNAL(battleEnded()), this, SLOT(show()));
     window->show();
 }
 

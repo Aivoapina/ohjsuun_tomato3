@@ -21,5 +21,8 @@
         <file>assets/mahtikani_ingame.png</file>
         <file>assets/kettutydy_ingame.png</file>
         <file>assets/tomato_texture.png</file>
+        <file>assets/teekkari_ingame.png</file>
+        <file>assets/siili_ingame.png</file>
+        <file>assets/humanisti_ingame.png</file>
     </qresource>
 </RCC>
