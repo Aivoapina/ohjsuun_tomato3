@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),
 {
     ui->setupUi(this);
     myteam_ = new ArenaTeam();
-    myteam_->set_name("MEIDÄN TIIMI");
+    myteam_->set_name("Oma tiimi");
 
     for( int i = 0; i < 5; i ++ ){
         ArenaTeam *aiteam = new ArenaTeam(i);

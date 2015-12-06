@@ -25,12 +25,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-
     void arvoOtteluohjelma();
-
-signals:
-
-public slots:
 
 private slots:
     void on_exitGame_clicked();
@@ -50,7 +45,6 @@ private slots:
     void pleb2_selected();
     void pleb3_selected();
     void pleb4_selected();
-
 
     void on_pushButton_clicked();
 

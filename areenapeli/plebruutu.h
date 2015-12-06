@@ -27,7 +27,6 @@ public:
 
     void mousePressEvent(QMouseEvent *e);
 
-
 signals:
     void selection_changed();
 

@@ -11,6 +11,6 @@ Katana;500;0;2d5
 Poliisin Kapinakilpi;750;7;0
 Varma poliisipamppu;750;0;6d1
 Mahtimiekka;1000;0;2d6
-Mahtikuplamuovisuojat;1000;10;0
-Timanntinen Zaijak-haarniska;3000;30;0
+Mahtikuplamuovisuojat;1000;8;0
+Timanntinen Zaijak-haarniska;3000;12;0
 Timanttinen Zaijak-miekka;3000;0;3d6

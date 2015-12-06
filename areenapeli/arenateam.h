@@ -17,18 +17,18 @@ public:
 
     ArenaTeam(int AItaso, QObject *parent = 0);
 
-
     void set_name(QString n);
-    QList<std::shared_ptr<ArenaMember>> getPlebs();
     void buyNewMember(std::shared_ptr<ArenaMember> newpleb);
-    std::shared_ptr<ArenaMember> return_selected();
     void select(std::shared_ptr<ArenaMember> s);
-    int get_raha();
     void lisaa_voitto();
     void alusta();
+    void lisaa_rahaa(int maara);
+
+    std::shared_ptr<ArenaMember> return_selected();
+    int get_raha();
     QString r_nimi();
     int r_voitot();
-    void lisaa_rahaa(int maara);
+    QList<std::shared_ptr<ArenaMember>> getPlebs();
 
 
 signals:

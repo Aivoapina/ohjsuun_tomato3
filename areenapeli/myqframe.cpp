@@ -13,11 +13,6 @@ myQFrame::~myQFrame()
     delete ui;
 }
 
-void myQFrame::paivita()
-{
-
-}
-
 void myQFrame::mousePressEvent(QMouseEvent *e)
 {
     if( children().size() != 0 ){

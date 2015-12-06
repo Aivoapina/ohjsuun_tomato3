@@ -5,7 +5,6 @@ ArenaTeam::ArenaTeam(QObject *parent)
     :QObject(parent)
 {
     voitot = 0;
-    name = "Tiimi";
     gold = 9000;
     selected = nullptr;
 }
@@ -15,22 +14,22 @@ ArenaTeam::ArenaTeam(int AItaso, QObject *parent)
 {
     voitot = 0;
     arpoja = new plebArpoja();
-    gold = 99999999; //purkka ":D"
+    gold = 99999999;
 
     if( AItaso == 0 ){
-        set_name("1");
+        set_name("Surkimukset");
     }
     else if( AItaso == 1 ){
-        set_name("2");
+        set_name("Aloittelijat");
     }
     else if( AItaso == 2){
-        set_name("3");
+        set_name("PerusPlebit");
     }
     else if( AItaso == 3){
-        set_name("4");
+        set_name("HyväYri");
     }
     else if( AItaso == 4){
-        set_name("5");
+        set_name("Jumalat");
     }
 
     buyNewMember(arpoja->arvoAIPleb(AItaso));

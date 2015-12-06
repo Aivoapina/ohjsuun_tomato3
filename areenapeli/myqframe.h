@@ -16,8 +16,6 @@ public:
     explicit myQFrame(QWidget *parent = 0);
     ~myQFrame();
 
-    void paivita();
-
     void mousePressEvent(QMouseEvent * e);
 
 signals:

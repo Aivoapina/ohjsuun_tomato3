@@ -32,7 +32,6 @@ public:
 private:
     void lue_alustus();
 
-
     QMap<QString, statsit> rodut;
     QStringList rotujen_nimet;
 };

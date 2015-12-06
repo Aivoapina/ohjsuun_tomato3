@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="osta">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>460</y>
+     <x>20</x>
+     <y>470</y>
      <width>85</width>
      <height>27</height>
     </rect>
@@ -34,32 +34,6 @@
      <width>256</width>
      <height>201</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>470</y>
-     <width>55</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Rahaa:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="rahamaara">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>470</y>
-     <width>55</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
    </property>
   </widget>
   <widget class="QFrame" name="selectionWidget">

@@ -29,15 +29,8 @@ signals:
     void tavara_ostettu();
 
 private slots:
-    //void on_TextRACE_textChanged();
-
-    //void on_ButtonEXIT_clicked();
-
-    //void on_tableWidget_activated(const QModelIndex &index);
     void refresh_plebs();
     void on_ButtonBuy_clicked();
-
-
 
 private:
     Ui::shopscene *ui;
@@ -45,7 +38,6 @@ private:
     ArenaTeam *myteam_;
     QTreeWidgetItem *aseet;
     QTreeWidgetItem *panssarit;
- //   std::shared_ptr<ArenaMember> selection_;
 };
 
 #endif // shopscene    _H

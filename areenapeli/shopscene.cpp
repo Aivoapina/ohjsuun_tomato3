@@ -12,7 +12,6 @@ shopscene::shopscene(ArenaTeam *myteam, QWidget *parent) :
 
     ui(new Ui::shopscene)
 {
-
     myteam_ = myteam;
     ui->setupUi(this);
     aseet = new QTreeWidgetItem(ui->treeWidget);
@@ -58,9 +57,6 @@ void shopscene::refresh_plebs()
 {
 
 }
-
-
-
 
 void shopscene::on_ButtonBuy_clicked()
 {

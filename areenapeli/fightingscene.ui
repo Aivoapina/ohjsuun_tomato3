@@ -55,6 +55,19 @@
     </rect>
    </property>
   </widget>
+  <widget class="QLabel" name="joukkueetLabel">
+   <property name="geometry">
+    <rect>
+     <x>730</x>
+     <y>30</y>
+     <width>481</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>

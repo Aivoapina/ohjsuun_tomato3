@@ -15,7 +15,6 @@ struct item_struct{
 
 class Shopobject{
 public:
-
     Shopobject();
     Shopobject(QString data);//tälle toteutus
     ~Shopobject();

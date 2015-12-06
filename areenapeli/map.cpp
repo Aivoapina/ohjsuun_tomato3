@@ -263,16 +263,6 @@ QList<Tile> Map::getMap()
 {
     return map;
 }
-/*
-QHash<int, QByteArray> Map::roleNames() const
-{
-    QHash<int, QByteArray> roles;
-    roles[BackgroundRole] = "background";
-    roles[IconRole] = "icon";
-    return roles;
-}*/
-
-
 
 int Map::rowCount(const QModelIndex & /*parent*/ ) const
 {

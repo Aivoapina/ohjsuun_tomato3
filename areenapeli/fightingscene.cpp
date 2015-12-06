@@ -22,6 +22,8 @@ FightingScene::FightingScene(ArenaTeam* my_team, ArenaTeam* enemy_team, QWidget 
     my_team_ = my_team;
     enemy_team_ = enemy_team;
 
+    ui->joukkueetLabel->setText(my_team_->r_nimi() + " vs " + enemy_team_->r_nimi());
+
     mapmodel = new Map();
     connect(mapmodel, SIGNAL(somethingHappened(QString)) ,this, SLOT(updateLog(QString)));
     connect(mapmodel, SIGNAL(updateActiveMember(std::shared_ptr<ArenaMember>)), this, SLOT(updateMemberScreen(std::shared_ptr<ArenaMember>)));

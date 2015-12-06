@@ -16,10 +16,7 @@ public:
     explicit lintulaWindow(ArenaTeam *team, QWidget *parent = 0);
     ~lintulaWindow();
 
-
 private slots:
-
-
     void on_kesavyysButton_clicked();
 
     void on_voimaButton_clicked();

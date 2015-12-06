@@ -8,7 +8,6 @@ int randInteger(int low, int high)
 kiltaModel::kiltaModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-
 }
 
 

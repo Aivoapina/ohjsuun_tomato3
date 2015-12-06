@@ -12,11 +12,6 @@
 #include <QTextStream>
 #include <QList>
 
-using namespace std;
-
-
-
-
 Shopobject::Shopobject()
 {
 
@@ -75,10 +70,8 @@ QList<Shopobject> Shopobject::refreshresults(){
         }
 
     }
-    //else {return;}
 
     fileobject.close();
-    cout << "Reading complete without errors: "<< endl;
 
     return list_shopobjects;
 }
@@ -89,8 +82,3 @@ unsigned int Shopobject::countobjects(QList<Shopobject> list_shopobjects)
     a = list_shopobjects.size();
     return a;
 }
-
-
-
-//mitas kaikkea tarvitaan
-//taistelijat (rotu, arvo,

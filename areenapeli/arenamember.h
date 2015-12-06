@@ -10,7 +10,6 @@
 #include "shop.h"
 
 struct stats{
-
     int hp;
     int power;
     int armor;
@@ -65,8 +64,6 @@ private:
 
     Shopobject *armor_;
     Shopobject *ase_;
-
-
 };
 
 

@@ -32,11 +32,11 @@
      <x>20</x>
      <y>260</y>
      <width>461</width>
-     <height>192</height>
+     <height>81</height>
     </rect>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>100</x>

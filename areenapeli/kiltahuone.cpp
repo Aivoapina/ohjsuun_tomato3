@@ -10,7 +10,6 @@ kiltahuone::kiltahuone(ArenaTeam *tiimi, QWidget *parent) :
     ui->setupUi(this);
     selection_ = nullptr;
     tiimi_ = tiimi;
-    ui->rahamaara->setText(QString::number(tiimi_->get_raha()));
     model_ = new kiltaModel();
     model_->makePleb();
     ui->listView->setModel(model_);
@@ -36,11 +35,7 @@ void kiltahuone::on_osta_clicked()
         }
         if( tiimi_->get_raha() >= selection_->r_hinta()){
             tiimi_->buyNewMember(selection_);
-            //ui->rahamaara->setText(QString::number(tiimi_->get_raha()));
             model_->removeRow(ui->listView->currentIndex().row());
-           /* for(auto i: ui->selectionWidget->children()){
-                delete i;
-            }*/
             if(model_->rowCount() != 0){
                 std::shared_ptr<ArenaMember> selection(new ArenaMember(ui->listView->selectionModel()->currentIndex().data(Qt::UserRole +1 ).toStringList()));
                 selection_ = selection;
