@@ -57,4 +57,6 @@ void FightingScene::endGame(ArenaTeam* winner)
 {
     QDialog *win = new QDialog(this);
     win->exec();
+    emit battleEnded();
+    close();
 }

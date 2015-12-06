@@ -27,6 +27,9 @@ public slots:
 
 private slots:
 
+signals:
+    void battleEnded();
+
 private:
     Ui::FightingScene *ui;
     QStringListModel* logModel;
