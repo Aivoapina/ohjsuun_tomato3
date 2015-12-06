@@ -93,7 +93,7 @@ std::shared_ptr<ArenaMember> plebArpoja::arvoAIPleb(int taso)
     std::shared_ptr<ArenaMember> arvottu(new ArenaMember(data));
 
     arvottu->osta_armor("Puusuojat;20;1;0");
-    arvottu->osta_ase("Puutikari;20;0;1");
+    arvottu->osta_ase("Puutikari;20;0;1d1");
     return arvottu;
 }
 
