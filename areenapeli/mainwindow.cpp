@@ -9,6 +9,14 @@
 #include <QDebug>
 #include "shopscene.h"
 
+
+int rnInt(int low, int high)
+{
+    return qrand() % ((high + 1) - low) + low;
+}
+
+
+
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
@@ -204,10 +212,49 @@ void MainWindow::pleb4_selected()
 
 void MainWindow::on_startGame_clicked()
 {
-    ArenaTeam *AIteam = new ArenaTeam(0);
-    FightingScene *window = new FightingScene(myteam_, AIteam, 0);
+    if( myteam_->getPlebs().size() == 0 ){
+        QMessageBox b;
+        b.setText("Värvää ensin");
+        b.exec();
+        return;
+    }
+    if( otteluohjelma.size() == 0 ){
+        SarjataulukkoScene * w = new SarjataulukkoScene(myteam_, aiTeams_, otteluohjelma);
+        w->show();
+        QMessageBox b;
+        b.setText("Sarja on loppu, onnittelut voittajalle!");
+        b.exec();
+        return;
+    }
+    while ( otteluohjelma[0].at(1) != myteam_ ){
+        if( otteluohjelma.size() == 1){
+            if( rnInt(0,1) == 0 ){
+                otteluohjelma[0][0]->lisaa_voitto();
+            }
+            else{
+                otteluohjelma[0][1]->lisaa_voitto();
+            }
+            otteluohjelma.pop_front();
+            SarjataulukkoScene * w = new SarjataulukkoScene(myteam_, aiTeams_, otteluohjelma);
+            w->show();
+            QMessageBox b;
+            b.setText("Sarja on loppu, onnittelut voittajalle!");
+            b.exec();
+            return;
+        }
+        if( rnInt(0,1) == 0 ){
+            otteluohjelma[0][0]->lisaa_voitto();
+        }
+        else{
+            otteluohjelma[0][1]->lisaa_voitto();
+        }
+        otteluohjelma.pop_front();
+    }
+
+    FightingScene *window = new FightingScene(myteam_, otteluohjelma[0][0], 0);
     hide();
     connect(window, SIGNAL(battleEnded()), this, SLOT(show()));
+    otteluohjelma.pop_front();
     window->show();
 }
 
