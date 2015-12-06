@@ -10,7 +10,6 @@ int randInt(int low, int high)
 
 
 ArenaMember::ArenaMember()
-
 {
 }
 

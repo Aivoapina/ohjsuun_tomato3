@@ -17,7 +17,7 @@ public:
     };
     */
     Map(QObject *parent = 0);
-    Controller* startFight(ArenaTeam *own_team, ArenaTeam *enemy_team);
+    Controller* startFight(ArenaTeam *own_team, ArenaTeam *enemy_team, Aicontrol *aic);
     bool findPleb(std::shared_ptr<ArenaMember> pleb);
     Q_INVOKABLE void liikuJohonkin(const QString &direction, const int &index);
     Q_INVOKABLE void endTurn();
@@ -25,6 +25,8 @@ public:
     //QHash<int, QByteArray> roleNames() const;
     int getM_index();
     void setM_index(int new_index);
+    void aiIndexChange();
+    QList<Tile> getMap();
 
     int rowCount(const QModelIndex &/*parent*/) const;
     QVariant data(const QModelIndex &index, int role) const;
@@ -37,11 +39,13 @@ signals:
     void somethingHappened(QString msg);
     void updateActiveMember(std::shared_ptr<ArenaMember> pleb);
     void gameEnded(ArenaTeam* winner);
+    void aiTurn(std::shared_ptr<ArenaMember> pleb);
 
 private:
     QList<Tile> map;
     Controller * control;
     QMap<QString, QString> dic;
+    Aicontrol* ai;
     int m_index;
 
 };

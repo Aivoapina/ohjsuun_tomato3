@@ -20,7 +20,9 @@ SOURCES += main.cpp \
     myqframe.cpp \
     shopscene.cpp \
     shop.cpp \
-    plebarpoja.cpp
+    plebarpoja.cpp \
+    sarjataulukkoscene.cpp \
+    aicontrol.cpp
 
 RESOURCES += qml.qrc \
     resources.qrc
@@ -51,7 +53,9 @@ HEADERS += \
     myqframe.h \
     shopscene.h \
     shop.h \
-    plebarpoja.h
+    plebarpoja.h \
+    sarjataulukkoscene.h \
+    aicontrol.h
 
 FORMS += \
     mainwindow.ui \
@@ -60,7 +64,8 @@ FORMS += \
     plebruutu.ui \
     lintulawindow.ui \
     shopscene.ui \
-    myqframe.ui
+    myqframe.ui \
+    sarjataulukkoscene.ui
 
 OTHER_FILES += \
     objectlist.txt

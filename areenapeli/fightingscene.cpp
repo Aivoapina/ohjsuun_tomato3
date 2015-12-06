@@ -19,11 +19,15 @@ FightingScene::FightingScene(ArenaTeam* my_team, ArenaTeam* enemy_team, QWidget 
     ui->logList->setModel(logModel);
     ui->logList->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    my_team_ = my_team;
+    enemy_team_ = enemy_team;
+
     mapmodel = new Map();
     connect(mapmodel, SIGNAL(somethingHappened(QString)) ,this, SLOT(updateLog(QString)));
     connect(mapmodel, SIGNAL(updateActiveMember(std::shared_ptr<ArenaMember>)), this, SLOT(updateMemberScreen(std::shared_ptr<ArenaMember>)));
     connect(mapmodel, SIGNAL(gameEnded(ArenaTeam*)), this, SLOT(endGame(ArenaTeam*)));
-    control = mapmodel->startFight(my_team, enemy_team);
+    ai = new Aicontrol(mapmodel, enemy_team_);
+    control = mapmodel->startFight(my_team, enemy_team, ai);
     ui->qmlView->rootContext()->setContextProperty("myModel", mapmodel);
     ui->qmlView->setSource(QUrl("qrc:/main.qml"));
 
@@ -57,6 +61,10 @@ void FightingScene::endGame(ArenaTeam* winner)
 {
     QDialog *win = new QDialog(this);
     win->exec();
+    my_team_->alusta();
+    enemy_team_->alusta();
+    winner->lisaa_rahaa(500);
+    winner->lisaa_voitto();
     emit battleEnded();
     close();
 }

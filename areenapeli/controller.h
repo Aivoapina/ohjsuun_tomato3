@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 #include <QAbstractItemModel>
 #include "arenateam.h"
+#include "aicontrol.h"
 
 class Controller
 {
@@ -15,11 +16,13 @@ public:
     QString hitMember(std::shared_ptr<ArenaMember> attacker, std::shared_ptr<ArenaMember> target);
     bool checkDeath(std::shared_ptr<ArenaMember> target);
     ArenaTeam *getWinner();
+    bool isInSameTeam(std::shared_ptr<ArenaMember> pleb, std::shared_ptr<ArenaMember> pleb2);
 
 private:
     ArenaTeam *own_team_;
     ArenaTeam *enemy_team_;
     ArenaTeam *active_team_;
+    Aicontrol *ai;
     QMap<std::shared_ptr<ArenaMember>, int> moved_plebs;
 };
 

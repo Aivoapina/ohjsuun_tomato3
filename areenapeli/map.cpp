@@ -4,6 +4,11 @@
 #include <QDebug>
 
 
+int randomInt(int low, int high)
+{
+    return qrand() % ((high + 1) - low) + low;
+}
+
 Map::Map(QObject *parent) : QAbstractListModel(parent)
 {
     dic.insert("right", "itään"); dic.insert("left", "länteen");
@@ -12,10 +17,14 @@ Map::Map(QObject *parent) : QAbstractListModel(parent)
     dic.insert("downright", "kaakkoon"); dic.insert("downleft", "lounaaseen");
 }
 
-Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team)
+Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team, Aicontrol *aic)
 {
     QString location = "assets/grass_texture.png";
+    QString stone = "assets/brick_texture.png";
+    QString water = "assets/water_texture.png";
     int j = 0;
+    int solid_tiles = 0;
+    int max_solid_tiles = 20;
     for(int i = 0; i < 160; i++){
         if( i == 7 ){
             j = 0;
@@ -27,6 +36,19 @@ Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team)
                 continue;
             }
         }
+        else if (10 < i and i < 150){
+            if ( solid_tiles < max_solid_tiles){
+                if (randomInt(1,20) == 1 ){
+                    map.push_back( Tile(nullptr, stone, true) );
+                    solid_tiles += 1;
+                    continue;
+                } else if(randomInt(1,20) == 1 ){
+                    map.push_back( Tile(nullptr, water, true ) );
+                    solid_tiles += 1;
+                    continue;
+                }
+            }
+        }
         else if ( i > 152 and i < 157 ){
             if ( j < own_team->getPlebs().size() ){
                 map.push_back( Tile( own_team->getPlebs().at(j), location, false ) );
@@ -34,10 +56,10 @@ Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team)
                 continue;
             }
         }
-        map.append( Tile( nullptr, location ) );
+        map.push_back( Tile( nullptr, location ) );
     }
     control = new Controller(own_team, enemy_team);
-
+    ai = aic;
     if ( !findPleb( control->startFight() ) ){
         qDebug() << "rip";
     }
@@ -74,7 +96,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
                 return;
             }
             target = map.at(index+1).getHero();
-            if (target != nullptr and target->r_current_hp() > 1 ){
+            if (target != nullptr and target->r_current_hp() > 0 ){
                 emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
             } else {
@@ -87,7 +109,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
                 return;
             }
             target = map.at(index-1).getHero();
-            if (target != nullptr and target->r_current_hp() > 1 ){
+            if (target != nullptr and target->r_current_hp() > 0 ){
                 emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
             } else {
@@ -100,7 +122,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
                 return;
             }
             target = map.at(index-10).getHero();
-            if ( target != nullptr and target->r_current_hp() > 1 ){
+            if ( target != nullptr and target->r_current_hp() > 0 ){
                 emit somethingHappened( control->hitMember(mem, target) );
                 emit updateActiveMember(mem);
             } else {
@@ -113,7 +135,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
                 return;
             }
             target = map.at(index+10).getHero();
-            if (target != nullptr and target->r_current_hp() > 1 ){
+            if (target != nullptr and target->r_current_hp() > 0 ){
                 emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
             } else {
@@ -126,7 +148,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
                 return;
             }
             target = map.at(index-11).getHero();
-            if ( target != nullptr and target->r_current_hp() > 1 ){
+            if ( target != nullptr and target->r_current_hp() > 0 ){
                 emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
             } else {
@@ -139,7 +161,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
                 return;
             }
             target = map.at(index-9).getHero();
-            if ( target != nullptr and target->r_current_hp() > 1 ){
+            if ( target != nullptr and target->r_current_hp() > 0 ){
                 emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
             } else {
@@ -152,7 +174,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
                 return;
             }
             target = map.at(index+11).getHero();
-            if (target != nullptr and target->r_current_hp() > 1 ){
+            if (target != nullptr and target->r_current_hp() > 0 ){
                 emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
             } else {
@@ -165,7 +187,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
                 return;
             }
             target = map.at(index+9).getHero();
-            if ( target != nullptr and target->r_current_hp() > 1){
+            if ( target != nullptr and target->r_current_hp() > 0){
                 emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
             } else {
@@ -174,6 +196,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
             }
         } else if(direction == "skip"){
             control->memberMoved( mem );
+            aiIndexChange();
             emit updateActiveMember( mem );
             emit somethingHappened( QString(mem->r_nimi() + " skippasi vuoronsa.") );
             return;
@@ -181,7 +204,9 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
     } else {
         return;
     }
-    control->memberMoved( mem );
+    if ( !control->isInSameTeam(target, mem) and (target == nullptr or target->r_current_hp() < 1) ){
+        control->memberMoved( mem );
+    }
     if ( control->checkDeath(target) and !player_moved ){
         emit somethingHappened(QString( target->r_nimi() + " kuoli saatana." ));
         ArenaTeam* winner = control->getWinner();
@@ -197,9 +222,7 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
 
 void Map::endTurn()
 {
-    if ( !findPleb( control->endTurn() ) ){
-        qDebug() << "rip";
-    }
+    emit aiTurn(control->endTurn());
 }
 
 void Map::playerChangedIndex(int index)
@@ -222,6 +245,18 @@ void Map::setM_index(int new_index)
 {
     m_index = new_index;
     emit m_indexChanged(new_index);
+}
+
+void Map::aiIndexChange()
+{
+    layoutAboutToBeChanged();
+    map.swap(3,1);
+    layoutChanged();
+}
+
+QList<Tile> Map::getMap()
+{
+    return map;
 }
 /*
 QHash<int, QByteArray> Map::roleNames() const

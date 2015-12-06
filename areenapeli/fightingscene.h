@@ -35,7 +35,10 @@ private:
     QStringListModel* logModel;
     QStringList log;
     Controller* control;
+    ArenaTeam* enemy_team_;
+    ArenaTeam* my_team_;
     Map* mapmodel;
+    Aicontrol* ai;
 };
 
 #endif // FIGHTINGSCENE_H

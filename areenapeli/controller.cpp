@@ -35,12 +35,12 @@ void Controller::memberMoved(std::shared_ptr<ArenaMember> pleb)
 
 std::shared_ptr<ArenaMember> Controller::endTurn()
 {
+    moved_plebs.clear();
     if (active_team_ == own_team_){
         active_team_ = enemy_team_;
     } else {
         active_team_ = own_team_;
     }
-    moved_plebs.clear();
     return active_team_->getPlebs().at(0);
 }
 
@@ -95,6 +95,19 @@ ArenaTeam* Controller::getWinner()
         }
         return enemy_team_;
     }
+}
+
+bool Controller::isInSameTeam(std::shared_ptr<ArenaMember> pleb, std::shared_ptr<ArenaMember> pleb2)
+{
+    if (pleb == nullptr or pleb2 == nullptr) {
+        return false;
+    }
+    if (own_team_->getPlebs().contains(pleb) and own_team_->getPlebs().contains(pleb2) ){
+        return true;
+    } else if (enemy_team_->getPlebs().contains(pleb) and enemy_team_->getPlebs().contains(pleb2) ){
+        return true;
+    }
+    return false;
 }
 
 

@@ -20,7 +20,7 @@ QString Tile::getHeroPic() const
     } else if ( hero->r_current_hp() < 1 ){
         return "assets/tomato_texture.png";
     }
-    return "assets/bull_ingame.png";
+    return QString("assets/" + hero->r_rotu() + "_ingame.png");
 }
 
 std::shared_ptr<ArenaMember> Tile::getHero() const
