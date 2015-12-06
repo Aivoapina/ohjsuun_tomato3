@@ -36,6 +36,7 @@ signals:
     void m_indexChanged(int new_index);
     void somethingHappened(QString msg);
     void updateActiveMember(std::shared_ptr<ArenaMember> pleb);
+    void gameEnded(ArenaTeam* winner);
 
 private:
     QList<Tile> map;

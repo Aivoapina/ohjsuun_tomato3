@@ -13,6 +13,8 @@ public:
     std::shared_ptr<ArenaMember> endTurn();
     std::shared_ptr<ArenaMember> findUnmovedMember();
     QString hitMember(std::shared_ptr<ArenaMember> attacker, std::shared_ptr<ArenaMember> target);
+    bool checkDeath(std::shared_ptr<ArenaMember> target);
+    ArenaTeam *getWinner();
 
 private:
     ArenaTeam *own_team_;
