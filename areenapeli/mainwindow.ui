@@ -17,61 +17,6 @@
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="1">
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QPushButton" name="startGame">
-          <property name="text">
-           <string>Areenalle</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="kilta">
-          <property name="text">
-           <string>Kiltaan</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="lintulaButton">
-          <property name="text">
-           <string>Lintula</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="text">
-           <string>Kauppaan</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="exitGame">
-          <property name="text">
-           <string>Exit</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <widget class="myQFrame" name="pleb1">
-        <property name="minimumSize">
-         <size>
-          <width>300</width>
-          <height>250</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="1" rowspan="2">
        <widget class="QFrame" name="keskiWidget">
         <property name="minimumSize">
@@ -136,6 +81,61 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="kilta">
+          <property name="text">
+           <string>Kiltaan</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="lintulaButton">
+          <property name="text">
+           <string>Lintula</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Kauppaan</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="sarjaButton">
+          <property name="text">
+           <string>Sarjataulukko</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="exitGame">
+          <property name="text">
+           <string>Exit</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <widget class="myQFrame" name="pleb1">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>250</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="2">
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
@@ -154,6 +154,13 @@
         </item>
        </layout>
       </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="startGame">
+        <property name="text">
+         <string>Areenalle</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -164,7 +171,7 @@
      <x>0</x>
      <y>0</y>
      <width>1132</width>
-     <height>20</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>
