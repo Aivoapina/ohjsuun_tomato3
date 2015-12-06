@@ -19,15 +19,11 @@ ArenaTeam::ArenaTeam(int AItaso, QObject *parent)
 
     if( AItaso == 0 ){
         set_name("1");
-        lisaa_voitto();
     }
     else if( AItaso == 1 ){
         set_name("2");
     }
     else if( AItaso == 2){
-        lisaa_voitto();
-        lisaa_voitto();
-        lisaa_voitto();
         set_name("3");
     }
     else if( AItaso == 3){
@@ -35,8 +31,6 @@ ArenaTeam::ArenaTeam(int AItaso, QObject *parent)
     }
     else if( AItaso == 4){
         set_name("5");
-        lisaa_voitto();
-        lisaa_voitto();
     }
 
     buyNewMember(arpoja->arvoAIPleb(AItaso));

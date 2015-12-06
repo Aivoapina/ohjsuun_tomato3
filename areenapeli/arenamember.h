@@ -34,7 +34,6 @@ public:
     void osta_ase(QString d);
     void osta_armor(QString d);
 
-    //0 indeksistä löytyy otettu osuma ja 1 indeksistä kuvaus tapahtuneesta
     QString laske_osuma(std::shared_ptr<ArenaMember> hyokkaaja);
 
 
