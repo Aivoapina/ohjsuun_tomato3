@@ -2,12 +2,14 @@
 #define AICONTROL_H
 #include "arenateam.h"
 #include "map.h"
+#include <QObject>
 
 class Aicontrol : public QObject
 {
     Q_OBJECT
 public:
-    Aicontrol(Map* mapmodel, ArenaTeam* team, QObject *parent);
+    explicit Aicontrol(QObject *parent = 0);
+    Aicontrol(Map* mapmodel, ArenaTeam* team, QObject *parent = 0);
     void calculateNextMove(int attacker);
     QString goOtherDir(int attacker);
 

@@ -27,7 +27,7 @@ FightingScene::FightingScene(ArenaTeam* my_team, ArenaTeam* enemy_team, QWidget 
     connect(mapmodel, SIGNAL(updateActiveMember(std::shared_ptr<ArenaMember>)), this, SLOT(updateMemberScreen(std::shared_ptr<ArenaMember>)));
     connect(mapmodel, SIGNAL(gameEnded(ArenaTeam*)), this, SLOT(endGame(ArenaTeam*)));
     ai = new Aicontrol(mapmodel, enemy_team_);
-    control = mapmodel->startFight(my_team, enemy_team, ai);
+    control = mapmodel->startFight(my_team, enemy_team);
     ui->qmlView->rootContext()->setContextProperty("myModel", mapmodel);
     ui->qmlView->setSource(QUrl("qrc:/main.qml"));
 

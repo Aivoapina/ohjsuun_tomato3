@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include <QTime>
 #include "arenateam.h"
+#include "aicontrol.h"
 
 int main(int argc, char *argv[])
 {

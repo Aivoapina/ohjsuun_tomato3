@@ -17,7 +17,7 @@ Map::Map(QObject *parent) : QAbstractListModel(parent)
     dic.insert("downright", "kaakkoon"); dic.insert("downleft", "lounaaseen");
 }
 
-Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team, Aicontrol *aic)
+Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team)
 {
     QString location = "assets/grass_texture.png";
     QString stone = "assets/brick_texture.png";
@@ -59,7 +59,6 @@ Controller *Map::startFight(ArenaTeam *own_team, ArenaTeam *enemy_team, Aicontro
         map.push_back( Tile( nullptr, location ) );
     }
     control = new Controller(own_team, enemy_team);
-    ai = aic;
     if ( !findPleb( control->startFight() ) ){
         qDebug() << "rip";
     }
@@ -196,7 +195,6 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
             }
         } else if(direction == "skip"){
             control->memberMoved( mem );
-            aiIndexChange();
             emit updateActiveMember( mem );
             emit somethingHappened( QString(mem->r_nimi() + " skippasi vuoronsa.") );
             return;
@@ -247,11 +245,11 @@ void Map::setM_index(int new_index)
     emit m_indexChanged(new_index);
 }
 
-void Map::aiIndexChange()
+void Map::aiTurnEnd()
 {
-    layoutAboutToBeChanged();
-    map.swap(3,1);
-    layoutChanged();
+    if ( !findPleb( control->startFight() ) ){
+        qDebug() << "rip";
+    }
 }
 
 QList<Tile> Map::getMap()

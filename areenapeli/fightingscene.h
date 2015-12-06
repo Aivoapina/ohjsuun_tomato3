@@ -6,6 +6,7 @@
 #include "map.h"
 #include "arenateam.h"
 #include <QStringListModel>
+#include "aicontrol.h"
 
 namespace Ui {
 class FightingScene;

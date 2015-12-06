@@ -2,7 +2,6 @@
 #define CONTROLLER_H
 #include <QAbstractItemModel>
 #include "arenateam.h"
-#include "aicontrol.h"
 
 class Controller
 {
@@ -22,7 +21,6 @@ private:
     ArenaTeam *own_team_;
     ArenaTeam *enemy_team_;
     ArenaTeam *active_team_;
-    Aicontrol *ai;
     QMap<std::shared_ptr<ArenaMember>, int> moved_plebs;
 };
 

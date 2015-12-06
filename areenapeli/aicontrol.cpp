@@ -1,8 +1,11 @@
 #include "aicontrol.h"
 #include <cmath>
 
-Aicontrol::Aicontrol(Map* mapmodel, ArenaTeam* team , QObject *parent)
-  :QObject(parent)
+Aicontrol::Aicontrol(QObject *parent) : QObject(parent){
+
+}
+
+Aicontrol::Aicontrol(Map* mapmodel, ArenaTeam* team , QObject *parent) : QObject(parent)
 {
     mapmodel_ = mapmodel;
     team_ = team;
@@ -18,22 +21,22 @@ void Aicontrol::calculateNextMove(int attacker)
 {
     QList<int> targets;
     for ( int i = 0; i < map.count(); i++  ){
-        if (map.at(i).getHero() != nullptr and !team->getPlebs.contains(map.at(i).getHero()) ){
+        if (map.at(i).getHero() != nullptr and !team_->getPlebs().contains(map.at(i).getHero()) ){
             targets.push_back(i);
         }
     }
     int tar;
+    double distance;
     double dist = 160;
     for (auto target : targets){
         distance = ( sqrt( pow (floor( (target - attacker) / 10), 2) + pow ( (target - attacker) % 10, 2  ) ) );
-        qDebug() << distance;
         if (distance < dist){
             tar = target;
         }
     }
-    double deltay = floor((target - attacker) / 10);
-    double deltax = (target - attacker) % 10;
-    double angle = arctan( deltay / deltax) * 180 / PI;
+    double deltay = floor((tar - attacker) / 10);
+    double deltax = (tar- attacker) % 10;
+    double angle = atan( deltay / deltax ) * 180 / 3.14159265;
 
     if ( angle == 0){
         if ( map.at(attacker + 1).isSolid() ){
@@ -92,7 +95,7 @@ void Aicontrol::calculateNextMove(int attacker)
             mapmodel_->liikuJohonkin("upright", attacker);
         }
     }
-    j = mapmodel_->getM_index();
+    int j = mapmodel_->getM_index();
     if (j == -1){
         return;
     } else {
@@ -105,15 +108,17 @@ QString Aicontrol::goOtherDir(int attacker)
     QList<int> list = dic.keys();
     std::random_shuffle(list.begin(), list.end());
     if (! map.at(attacker+list.at(0)).isSolid() ){
-        return dic[i];
+        return dic[list.at(0)];
     } else {
         return goOtherDir(attacker);
     }
 }
 
-void Aicontrol::aiEndTurn()
-{
+void Aicontrol::aiEndTurn(std::shared_ptr<ArenaMember> pleb){
 
+    if ( findPleb(pleb) == -1 ){
+        mapmodel_->endTurn();
+    }
 }
 
 int Aicontrol::findPleb(std::shared_ptr<ArenaMember> pleb)
@@ -124,6 +129,6 @@ int Aicontrol::findPleb(std::shared_ptr<ArenaMember> pleb)
             return -1;
         }
     }
-
+    return -1;
 }
 
