@@ -14,6 +14,14 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),
 {
     ui->setupUi(this);
     myteam_ = new ArenaTeam();
+    myteam_->set_name("MEIDÄN TIIMI");
+
+    for( int i = 0; i < 5; i ++ ){
+        ArenaTeam *aiteam = new ArenaTeam(i);
+        aiTeams_.append(aiteam);
+    }
+
+    arvoOtteluohjelma();
 
     ui->rahaLabel->setText(QString::number(myteam_->get_raha()));
 
@@ -34,6 +42,28 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),
 }
 MainWindow::~MainWindow(){
     delete ui;
+}
+
+void MainWindow::arvoOtteluohjelma()
+{
+    for( ArenaTeam * t : aiTeams_ ){
+        QList<ArenaTeam*> lisattava;
+        lisattava.push_back(t);
+        lisattava.push_back(myteam_);
+        otteluohjelma.push_back(lisattava);
+    }
+    QList<ArenaTeam*> arvottavat{aiTeams_};
+    for( ArenaTeam * t1: aiTeams_ ){
+        arvottavat.pop_front();
+        for( ArenaTeam * t2 : arvottavat ){
+            QList<ArenaTeam*> lisattava;
+            lisattava.push_back(t1);
+            lisattava.push_back(t2);
+            otteluohjelma.push_back(lisattava);
+        }
+    }
+    std::random_shuffle(otteluohjelma.begin(), otteluohjelma.end());
+
 }
 
 
@@ -189,4 +219,10 @@ void MainWindow::on_pushButton_clicked()
     shopscene *window = new shopscene(myteam_, ui->keskiWidget);
     connect(window, SIGNAL(tavara_ostettu()),this, SLOT(refresh_plebs()));
     window->show();
+}
+
+void MainWindow::on_sarjaButton_clicked()
+{
+    SarjataulukkoScene * w = new SarjataulukkoScene(myteam_, aiTeams_, otteluohjelma);
+    w->show();
 }

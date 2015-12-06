@@ -92,8 +92,25 @@ std::shared_ptr<ArenaMember> plebArpoja::arvoAIPleb(int taso)
 
     std::shared_ptr<ArenaMember> arvottu(new ArenaMember(data));
 
-    arvottu->osta_armor("Puusuojat;20;1;0");
-    arvottu->osta_ase("Puutikari;20;0;1d1");
+    //lisätään aseet ja armorit
+    if( taso == 0){
+    }
+    else if( taso == 1){
+        arvottu->osta_armor("Puusuojat;20;1;0");
+        arvottu->osta_ase("Puutikari;20;0;1d1");
+    }
+    else if( taso == 2 ){
+        arvottu->osta_armor("Foliohaarniska;50;2;0");
+        arvottu->osta_ase("Foliomäjäytin;50;0;1d3");
+    }
+    else if( taso == 3 ){
+        arvottu->osta_armor("Poliisin Kapinakilpi;750;7;0");
+        arvottu->osta_ase("Katana;500;0;2d5");
+    }
+    else if( taso == 4 ){
+        arvottu->osta_armor("Timanntinen Zaijak-haarniska;3000;30;0");
+        arvottu->osta_ase("Timanttinen Zaijak-miekka;3000;0;3d6");
+    }
     return arvottu;
 }
 
