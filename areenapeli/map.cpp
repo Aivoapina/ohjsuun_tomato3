@@ -220,7 +220,14 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
 
 void Map::endTurn()
 {
-    emit aiTurn(control->endTurn());
+    if (!findPleb(control->endTurn() ) ){
+        qDebug() << "rip";
+    }
+}
+void Map::playerTurn()
+{
+    std::shared_ptr<ArenaMember> yee = control->endTurn();
+    emit aiTurn(yee);
 }
 
 void Map::playerChangedIndex(int index)

@@ -116,17 +116,22 @@ QString Aicontrol::goOtherDir(int attacker)
 
 void Aicontrol::aiEndTurn(std::shared_ptr<ArenaMember> pleb){
 
-    if ( findPleb(pleb) == -1 ){
-        mapmodel_->endTurn();
+    int i = findPleb(pleb);
+    if ( i != -1 ){
+        calculateNextMove(i);
+    } else {
+        mapmodel_->playerTurn();
     }
 }
 
 int Aicontrol::findPleb(std::shared_ptr<ArenaMember> pleb)
 {
+    if (pleb == nullptr){
+        return -1;
+    }
     for (int i = 0; i < map.count(); i++ ){
         if ( map.at(i).getHero() == pleb ){
-            calculateNextMove(i);
-            return -1;
+            return i;
         }
     }
     return -1;

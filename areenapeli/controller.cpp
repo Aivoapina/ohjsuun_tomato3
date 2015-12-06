@@ -35,12 +35,12 @@ void Controller::memberMoved(std::shared_ptr<ArenaMember> pleb)
 
 std::shared_ptr<ArenaMember> Controller::endTurn()
 {
-    moved_plebs.clear();
     if (active_team_ == own_team_){
         active_team_ = enemy_team_;
     } else {
         active_team_ = own_team_;
     }
+    moved_plebs.clear();
     return active_team_->getPlebs().at(0);
 }
 

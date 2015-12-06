@@ -26,6 +26,7 @@ public:
     int getM_index();
     void setM_index(int new_index);
     void aiTurnEnd();
+    void playerTurn();
     QList<Tile> getMap();
 
     int rowCount(const QModelIndex &/*parent*/) const;
