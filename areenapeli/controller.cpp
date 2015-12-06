@@ -67,4 +67,35 @@ QString Controller::hitMember(std::shared_ptr<ArenaMember> attacker, std::shared
     return target->laske_osuma(attacker);
 }
 
+bool Controller::checkDeath(std::shared_ptr<ArenaMember> target)
+{
+    if (target == nullptr){
+        return false;
+    }
+    if (target->r_current_hp() < 1){
+        return true;
+    }
+    return false;
+}
+
+ArenaTeam* Controller::getWinner()
+{
+    if (active_team_ == own_team_){
+        for (auto mem : enemy_team_->getPlebs()){
+            if (mem->r_current_hp() > 0){
+                return nullptr;
+            }
+        }
+        return own_team_;
+    } else {
+        for (auto mem : own_team_->getPlebs()){
+            if (mem->r_current_hp() > 0){
+                return nullptr;
+            }
+        }
+        return enemy_team_;
+    }
+}
+
+
 

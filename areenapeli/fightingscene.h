@@ -23,6 +23,7 @@ public:
 public slots:
     void updateLog(QString msg);
     void updateMemberScreen(std::shared_ptr<ArenaMember> pleb);
+    void endGame(ArenaTeam *winner);
 
 private slots:
 

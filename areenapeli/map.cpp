@@ -64,86 +64,95 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
     if (index == -1){
         return;
     }
+    std::shared_ptr<ArenaMember> target;
     std::shared_ptr<ArenaMember> mem = map.at(index).getHero();
     if ( control->canMemberMove( mem ) ){
         if (direction == "right" ){
             if (index % 10 == 9 or map.at(index+1).isSolid()){
                 qDebug() << "Can't move there";
                 return;
-            } else if (map.at(index+1).getHero() != nullptr ){
-                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index+1).getHero()) );
+            }
+            target = map.at(index+1).getHero();
+            if (target != nullptr and target->r_current_hp() > 1 ){
+                emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
-                return;
             }
             map.swap(index, index+1);
         } else if(direction == "left" ){
             if (index % 10 == 0 or map.at(index-1).isSolid()){
                 qDebug() << "Can't move there";
                 return;
-            } else if (map.at(index-1).getHero() != nullptr ){
-                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index-1).getHero()));
+            }
+            target = map.at(index-1).getHero();
+            if (target != nullptr and target->r_current_hp() > 1 ){
+                emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
-                return;
             }
             map.swap(index, index-1);
         } else if(direction == "up" ){
             if (index < 10 or map.at(index-10).isSolid()){
                 qDebug() << "Can't move there";
                 return;
-            } else if (map.at(index-10).getHero() != nullptr ){
-                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index-10).getHero()) );
+            }
+            target = map.at(index-10).getHero();
+            if ( target != nullptr and target->r_current_hp() > 1 ){
+                emit somethingHappened( control->hitMember(mem, target) );
                 emit updateActiveMember(mem);
-                return;
             }
             map.swap(index, index-10);
         } else if(direction == "down" ){
             if (index > 149 or map.at(index+10).isSolid()){
                 qDebug() << "Can't move there";
                 return;
-            } else if (map.at(index+10).getHero() != nullptr ){
-                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index+10).getHero()));
+            }
+            target = map.at(index+10).getHero();
+            if (target != nullptr and target->r_current_hp() > 1 ){
+                emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
-                return;
             }
             map.swap(index, index+10);
         } else if(direction == "upleft") {
             if (index % 10 == 0 or index < 10 or map.at(index-11).isSolid() ){
                 qDebug() << "Can't move there";
                 return;
-            } else if (map.at(index-11).getHero() != nullptr ){
-                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index-11).getHero()));
+            }
+            target = map.at(index-11).getHero();
+            if ( target != nullptr and target->r_current_hp() > 1 ){
+                emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
-                return;
             }
             map.swap(index, index-11);
         } else if(direction == "upright"){
             if (index % 10 == 9 or index < 10 or map.at(index-9).isSolid() ){
                 qDebug() << "Can't move there";
                 return;
-            } else if (map.at(index-9).getHero() != nullptr ){
-                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index-9).getHero()));
+            }
+            target = map.at(index-9).getHero();
+            if ( target != nullptr and target->r_current_hp() > 1 ){
+                emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
-                return;
             }
             map.swap(index, index-9);
         } else if(direction == "downright"){
             if (index % 10 == 9 or index > 149 or map.at(index+11).isSolid() ){
                 qDebug() << "Can't move there";
                 return;
-            } else if (map.at(index+11).getHero() != nullptr ){
-                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index+11).getHero()));
+            }
+            target = map.at(index+11).getHero();
+            if (target != nullptr and target->r_current_hp() > 1 ){
+                emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
-                return;
             }
             map.swap(index, index+11);
         } else if(direction == "downleft"){
             if (index % 10 == 0 or index > 149 or map.at(index+9).isSolid() ){
                 qDebug() << "Can't move there";
                 return;
-            } else if (map.at(index+9).getHero() != nullptr ){
-                emit somethingHappened( control->hitMember(map.at(index).getHero(), map.at(index+9).getHero()));
+            }
+            target = map.at(index+9).getHero();
+            if ( target != nullptr and target->r_current_hp() > 1){
+                emit somethingHappened( control->hitMember(mem, target));
                 emit updateActiveMember(mem);
-                return;
             }
             map.swap(index, index+9);
         } else if(direction == "skip"){
@@ -156,6 +165,14 @@ void Map::liikuJohonkin(const QString &direction, const int &index)
         return;
     }
     control->memberMoved( mem );
+    if ( control->checkDeath(target) ){
+        emit (QString( target->r_nimi() + "kuoli saatana." ));
+        ArenaTeam* winner = control->getWinner();
+        if ( winner != nullptr ){
+            emit gameEnded(winner);
+        }
+        return;
+    }
     emit somethingHappened( QString(mem->r_nimi() + " liikkui suuntaan " + dic[direction] + "."));
     emit updateActiveMember(mem);
     layoutChanged();

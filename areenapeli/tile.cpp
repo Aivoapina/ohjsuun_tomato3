@@ -17,6 +17,8 @@ QString Tile::getHeroPic() const
 {
     if (hero == nullptr){
         return "assets/transparent.png";
+    } else if ( hero->r_current_hp() < 1 ){
+        return "assets/tomato_texture.png";
     }
     return "assets/bull_ingame.png";
 }

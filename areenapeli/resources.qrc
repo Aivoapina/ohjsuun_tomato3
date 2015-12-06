@@ -20,6 +20,6 @@
         <file>assets/karhujaba_ingame.png</file>
         <file>assets/mahtikani_ingame.png</file>
         <file>assets/kettutydy_ingame.png</file>
-
+        <file>assets/tomato_texture.png</file>
     </qresource>
 </RCC>

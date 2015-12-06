@@ -22,6 +22,7 @@ FightingScene::FightingScene(ArenaTeam* my_team, ArenaTeam* enemy_team, QWidget 
     mapmodel = new Map();
     connect(mapmodel, SIGNAL(somethingHappened(QString)) ,this, SLOT(updateLog(QString)));
     connect(mapmodel, SIGNAL(updateActiveMember(std::shared_ptr<ArenaMember>)), this, SLOT(updateMemberScreen(std::shared_ptr<ArenaMember>)));
+    connect(mapmodel, SIGNAL(gameEnded(ArenaTeam*)), this, SLOT(endGame(ArenaTeam*)));
     control = mapmodel->startFight(my_team, enemy_team);
     ui->qmlView->rootContext()->setContextProperty("myModel", mapmodel);
     ui->qmlView->setSource(QUrl("qrc:/main.qml"));
@@ -50,4 +51,10 @@ void FightingScene::updateMemberScreen(std::shared_ptr<ArenaMember> pleb)
     plebRuutu *ruutu = new plebRuutu(pleb, ui->frame);
     ruutu->show();
 
+}
+
+void FightingScene::endGame(ArenaTeam* winner)
+{
+    QDialog *win = new QDialog(this);
+    win->exec();
 }
